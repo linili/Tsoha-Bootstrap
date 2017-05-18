@@ -1,0 +1,2 @@
+Johdanto
+Pesisäänestys on tietokantasovellus, jossa pelaajat äänestävät joukostaan vuoden pelaajan, vuoden tyylin, vuoden tulokkaan ja vuoden tsempparin. Työ toteutetaan users palvelimelle käyttäen PHP:tä.
