@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com/linili/Tsoha-Bootstrap/dok/Dokumentaatio.pdf)
+* [Linkki dokumentaatiooni](https://www.github.com/linili/Tsoha-Bootstrap/dok/dokumentaatio.pdf)
 
 ## Työn aihe
 
