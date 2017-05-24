@@ -1,4 +1,4 @@
-CREATE TABLE aanestys(
+CREATE TABLE Aanestys(
 id SERIAL PRIMARY KEY,
 nimi varchar(50) NOT NULL,
 yllapitaja varchar(50) NOT NULL,
@@ -7,7 +7,8 @@ kuvaus varchar(50) NOT NULL,
 julkaistu DATE
 );-- Lisää CREATE TABLE lauseet tähän tiedostoon
 
-CREATE TABLE pelaaja(
+CREATE TABLE Pelaaja(
 id SERIAL PRIMARY KEY,
 nimi varchar(50) NOT NULL,
-aanestanyt boolean DEFAULT FALSE,
+aanestanyt boolean DEFAULT FALSE
+);
