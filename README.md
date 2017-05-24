@@ -10,4 +10,4 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Äänestys pesäpallogaalaa varten. Pelaajat rekisteröityvät ja jokainen voi äänestää vain kerran. Äänestyksen järjestäjä syöttää kategoriat, joihin kaikki pelaajat ovat ehdolla. Poikkeuksena on vuoden tulokas kategoria, johon on ehdolla vain ne pelaajat, jotka rekisteröityessään valitsevat olla ehdolla kyseisessä kategoriassa. Pelaajat näkevät äänestyksen tuloksen, mutta eivät äänimääriä. Järjestäjä näkee äänestysmäärät.
+Äänestys. Pelaajat rekisteröityvät palveluun. Sen jälkeen he kirjautuvat palveluun ja valitsevat äänestyslistasta mihin äänestykseen haluavat ottaa osaa. Jokainen voi äänestää yhdessä äänestyksessä vain kerran. Äänestyksen ylläpitäjä syöttää kategoriat, joihin kaikki pelaajat ovat ehdolla. Poikkeuksena on vuoden tulokas kategoria, johon on ehdolla vain ne pelaajat, jotka rekisteröityessään valitsevat olla ehdolla kyseisessä kategoriassa. Pelaajat näkevät äänestyksen tuloksesta kolme eniten ääniä saaneet. Pelaajat näkevät myös oman äänestyshistoriansa. Ylläpitäjä näkee kaikki äänestysmäärät.
