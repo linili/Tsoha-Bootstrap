@@ -37,4 +37,8 @@
     public static function aanestys_muokkaa() {
         View::make('suunnitelmat/aanestys_muokkaa.html');
     }
+
+    public static function ehdokas_list() {
+        View::make('suunnitelmat/ehdokas_list.html');
+    }
   }

@@ -31,3 +31,7 @@
    $routes->get('/aanestys_muokkaa', function() {
   HelloWorldController::aanestys_muokkaa();
   });
+
+    $routes->get('/ehdokas_list', function() {
+  HelloWorldController::ehdokas_list();
+  });
