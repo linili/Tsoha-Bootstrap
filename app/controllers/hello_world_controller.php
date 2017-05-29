@@ -10,7 +10,19 @@
 
     public static function sandbox(){
       // Testaa koodiasi täällä
-        View::make('helloworld.html');
+        // Muista sisällyttää malliluokka require-komennolla!
+require 'app/models/aanestys.php';
+class HelloWorldController extends BaseController{
+  // ...
+  public static function sandbox(){
+    $skyrim = Aanestys::etsi(1);
+    $aanestykset = Aanestys::kaikki();
+    // Kint-luokan dump-metodi tulostaa muuttujan arvon
+    Kint::dump($aanestykset);
+    Kint::dump($skyrim);
+  }
+}
+      //  View::make('helloworld.html');
       // echo 'Hello World!!!';
     }
     
