@@ -1,5 +1,5 @@
 <?php
-
+require 'app/models/aanestys.php';
   class HelloWorldController extends BaseController{
 
     public static function index(){
@@ -11,20 +11,18 @@
     public static function sandbox(){
       // Testaa koodiasi täällä
         // Muista sisällyttää malliluokka require-komennolla!
-require 'app/models/aanestys.php';
-class HelloWorldController extends BaseController{
-  // ...
-  public static function sandbox(){
+
     $skyrim = Aanestys::etsi(1);
     $aanestykset = Aanestys::kaikki();
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
     Kint::dump($aanestykset);
     Kint::dump($skyrim);
-  }
-}
+  
+
       //  View::make('helloworld.html');
       // echo 'Hello World!!!';
     }
+    
     
     public static function rekisterointi() {
         echo 'Täällä rekisteröidytään';
@@ -35,22 +33,22 @@ class HelloWorldController extends BaseController{
         
     }
     public static function login() {
-        View::make('suunnitelmat/login.html');
+        View::make('login.html');
     }
     
     public static function aanestys_list() {
-        View::make('suunnitelmat/aanestys_list.html');
+        View::make('aanestys/aanestys_list.html');
     }
     
     public static function aanestys_tiedot() {
-        View::make('suunnitelmat/aanestys_tiedot.html');
+        View::make('aanestys/aanestys_tiedot.html');
     }
     
     public static function aanestys_muokkaa() {
-        View::make('suunnitelmat/aanestys_muokkaa.html');
+        View::make('aanestys/aanestys_muokkaa.html');
     }
 
     public static function ehdokas_list() {
-        View::make('suunnitelmat/ehdokas_list.html');
+        View::make('ehdokas/ehdokas_list.html');
     }
   }

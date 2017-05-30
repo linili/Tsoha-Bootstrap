@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Äänestykset</h1>
+
+  <p>
+    <a href="{{base_path}}/aanestys/aanestys_list" class="btn btn-success">Lisää äänestys</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Äänestys</th>
+        <th>Ylläpitäjä</th>
+        <th>Status</th>
+        <th>Kuvaus</th>
+        <th>Julkaistu</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for aanestys in aanestykset %}
+      <!-- Listataan äänestykset tähän -->
+      <tr>
+        <td><a href="{{base_path}}/aanestys/{{aanestys.id}}">{{aanestys.nimi}}</a></td>
+        <td>{{aanestys.yllapitaja}}</td>
+        <td>
+            {% if aanestys.status %}
+            <label class="label label-success">käynnissä
+            {%else %}
+            <label class "label label-danger">äänestysaika on päättynyt
+            {% endif %}
+            </td>
+        <td>{{aanestys.kuvaus}}</td>
+        <td>{{aanestys.julkaistu}}</td>
+        <th><a class="btn btn-default btn-sm" href="{{base_path}}/aanestys/{{aanestys.id}}/aanestys_muokkaa">Muokkaa</a></th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -35,3 +35,10 @@
     $routes->get('/ehdokas_list', function() {
   HelloWorldController::ehdokas_list();
   });
+  
+  $routes-> get('/aanestys', function(){
+  AanestysController::index();
+  });
+  $routes-> get('/aanestys/:id', function($id){
+      AanestysController::show($id);
+  });

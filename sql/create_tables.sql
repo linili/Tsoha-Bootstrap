@@ -24,7 +24,3 @@ CREATE TABLE Aani(
 aanestaja_id INTEGER REFERENCES Pelaaja(id),
 ehdokas_id INTEGER REFERENCES Ehdokas(id));
 
-
-CREATE TABLE Pelaaja_harjoitus(
-	nimi varchar(50) NOT NULL,
-salasana varchar(50) NOT NULL);
