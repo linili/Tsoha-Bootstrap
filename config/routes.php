@@ -39,6 +39,16 @@
   $routes-> get('/aanestys', function(){
   AanestysController::index();
   });
+  
+   $routes-> get('/aanestys/uusi', function(){
+  AanestysController::uusi();
+  });
+  
   $routes-> get('/aanestys/:id', function($id){
       AanestysController::show($id);
   });
+  
+   $routes-> post('/aanestys', function(){
+  AanestysController::store();
+  });
+  

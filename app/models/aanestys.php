@@ -43,4 +43,14 @@ public static function etsi($id){
 
     return null;
   }
+  public static function save(){
+       // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
+    $query = DB::connection()->prepare('INSERT INTO Aanestys (nimi, yllapitaja, status, kuvaus, julkaistu) VALUES (:nimi, :yllapitaja, :status, :kuvaus, :julkaistu) RETURNING id');
+    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
+    $query->execute(array('nimi' => $this->nimi, 'yllapitaja' => $this->yllapitaja, 'status' => $this->status, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
+    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
+    $row = $query->fetch();
+    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
+    $this->id = $row['id'];
+  }
 }
