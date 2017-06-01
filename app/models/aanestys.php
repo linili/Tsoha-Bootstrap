@@ -50,7 +50,9 @@ public static function etsi($id){
     $query->execute(array('nimi' => $this->nimi, 'yllapitaja' => $this->yllapitaja, 'status' => $this->status, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
     // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
     $row = $query->fetch();
+   // Kint::trace();
+   // Kint::dump($row);
     // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
-    $this->id = $row['id'];
+     $this->id = $row['id'];
   }
 }

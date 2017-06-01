@@ -48,7 +48,13 @@
       AanestysController::show($id);
   });
   
+  $routes->get('/', function(){
+  AanestysController::index();
+  });
+  
    $routes-> post('/aanestys', function(){
   AanestysController::store();
   });
+ 
+ 
   

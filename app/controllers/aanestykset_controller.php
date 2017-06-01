@@ -17,14 +17,15 @@ class AanestysController extends BaseController{
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
     // Alustetaan uusi Aanestys-luokan olion käyttäjän syöttämillä arvoilla
-    $game = new Game(array(
+    $aanestys = new Aanestys(array(
       'nimi' => $params['nimi'],
-      'kuvaus' => $params['kuvaus'],
       'status' => $params['status'],
       'yllapitaja' => $params['yllapitaja'],
+      'kuvaus' => $params['kuvaus'],
       'julkaistu' => $params['julkaistu']
     ));
-
+    
+   // Kint::dump($params);
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
     $aanestys->save();
 
