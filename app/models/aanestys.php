@@ -47,7 +47,7 @@ public static function etsi($id){
        // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
     $query = DB::connection()->prepare('INSERT INTO Aanestys (nimi, yllapitaja, status, kuvaus, julkaistu) VALUES (:nimi, :yllapitaja, :status, :kuvaus, :julkaistu) RETURNING id');
     // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
-    $query->execute(array('nimi' => $this->nimi, 'yllapitaja' => $this->yllapitaja, 'status' => $this->status, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
+    $query->execute(array('nimi' => $this->nimi, 'status' => $this->status, 'yllapitaja' => $this->yllapitaja, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
     // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
     $row = $query->fetch();
    // Kint::trace();

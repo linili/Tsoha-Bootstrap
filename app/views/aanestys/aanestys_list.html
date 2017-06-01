@@ -23,14 +23,8 @@
       <!-- Listataan äänestykset tähän -->
       <tr>
         <td><a href="{{base_path}}/aanestys/{{aanestys.id}}">{{aanestys.nimi}}</a></td>
+        <td>{{aanestys.status}}</td>
         <td>{{aanestys.yllapitaja}}</td>
-        <td>
-            {% if aanestys.status %}
-            <label class="label label-success">käynnissä
-            {%else %}
-            <label class "label label-danger">äänestys on päättynyt
-            {% endif %}
-            </td>
         <td>{{aanestys.kuvaus}}</td>
         <td>{{aanestys.julkaistu}}</td>
         <th><a class="btn btn-default btn-sm" href="{{base_path}}/aanestys/aanestys_muokkaa{{aanestys.id}}/aanestys_muokkaa">Muokkaa</a></th>
