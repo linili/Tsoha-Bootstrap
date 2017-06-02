@@ -22,4 +22,7 @@
       <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>
   </form>
+  <form method="post" action ="{{base_path}}/aanestys/{{aanestys.id}}/destroy" style="display: inline-block;">
+      <button type="submit" class="btn btn-danger">Poista</button>
+  </form>
 {% endblock %}

@@ -1,9 +1,9 @@
 <?php
 
-  $routes->get('/', function() {
+ /* $routes->get('/', function() {
     HelloWorldController::index();
   });
-
+*/
   $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
   });
@@ -12,24 +12,24 @@
   HelloWorldController::rekisterointi();
   });
   
-   $routes->get('/kirjautuminen', function() {
+ /*  $routes->get('/kirjautuminen', function() {
   HelloWorldController::kirjautuminen();
   });
-  
+ */ 
   $routes->get('/login', function() {
-  HelloWorldController::login();
+      AanestysController::login();
   });
   
    $routes->get('/aanestys_list', function() {
-  HelloWorldController::aanestys_list();
+       AanestysController::aanestys_list();
   });
   
    $routes->get('/aanestys_tiedot', function() {
-  HelloWorldController::aanestys_tiedot();
+       AanestysController::aanestys_tiedot();
   });
   
-   $routes->get('/aanestys_muokkaa', function() {
-  HelloWorldController::aanestys_muokkaa();
+   $routes->get('/edit', function() {
+       AanestysController::aanestys_muokkaa();
   });
 
     $routes->get('/ehdokas_list', function() {
@@ -54,6 +54,16 @@
   
    $routes-> post('/aanestys', function(){
   AanestysController::store();
+  });
+  
+  $routes->get('/aanestys/:id/edit', function($id){
+  AanestysController::edit($id);
+  });
+  $routes->post('/aanestys/:id/edit', function($id){
+  AanestysController::update($id);
+  });
+  $routes->post('/aanestys/:id/destroy', function($id){
+  AanestysController::destroy($id);
   });
  
  

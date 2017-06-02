@@ -9,14 +9,19 @@ require 'app/models/aanestys.php';
     }
 
     public static function sandbox(){
+        
+        $paras = new Aanestys(array('nimi' => 's', 'status' => 'käynnissä', 'yllapitaja' => 'minä', 'kuvaus' => 'vuoden paras', 'julkaistu' => '11.12'
+            ));
+        $errors = $paras->errors();
+        Kint::dump($errors);
       // Testaa koodiasi täällä
         // Muista sisällyttää malliluokka require-komennolla!
 
-    $skyrim = Aanestys::etsi(1);
-    $aanestykset = Aanestys::kaikki();
+  //  $skyrim = Aanestys::etsi(1);
+  //  $aanestykset = Aanestys::kaikki();
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
-    Kint::dump($aanestykset);
-    Kint::dump($skyrim);
+  //  Kint::dump($aanestykset);
+  //  Kint::dump($skyrim);
   
 
       //  View::make('helloworld.html');
@@ -32,23 +37,13 @@ require 'app/models/aanestys.php';
         echo 'Täällä kirjaudutaan';
         
     }
-    public static function login() {
-        View::make('login.html');
-    }
     
-    public static function aanestys_list() {
-        View::make('aanestys/aanestys_list.html');
-    }
+  /* 
     
-    public static function aanestys_tiedot() {
-        View::make('aanestys/aanestys_tiedot.html');
-    }
-    
-    public static function aanestys_muokkaa() {
-        View::make('aanestys/aanestys_muokkaa.html');
-    }
+   
 
     public static function ehdokas_list() {
         View::make('ehdokas/ehdokas_list.html');
+  
     }
-  }
+ */ }
