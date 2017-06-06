@@ -10,7 +10,12 @@ require 'app/models/aanestys.php';
 
     public static function sandbox(){
         
-        $paras = new Aanestys(array('nimi' => 's', 'status' => 'käynnissä', 'yllapitaja' => 'minä', 'kuvaus' => 'vuoden paras', 'julkaistu' => '11.12'
+        $paras = new Aanestys(array(
+            'nimi' => 's',
+            'status' => 'käynnissä',
+            'yllapitaja' => 'minä',
+            'kuvaus' => 'vuoden paras',
+            'julkaistu' => '11.12'
             ));
         $errors = $paras->errors();
         Kint::dump($errors);

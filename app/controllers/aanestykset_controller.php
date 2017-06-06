@@ -13,7 +13,7 @@ class AanestysController extends BaseController{
     }
     
     public static function aanestys_muokkaa() {
-        View::make('aanestys/edit.html');
+        View::make('aanestys/edit.html', array('aanestys' => $aanestys));
     }
     
     public static function index(){
@@ -22,7 +22,7 @@ class AanestysController extends BaseController{
     }
     public static function show($id){
         $aanestys = Aanestys::etsi($id);
-        View::make('aanestys/aanestys_list.html', array('aanestys' => $aanestys));
+        View::make('aanestys/aanestys_tiedot.html', array('aanestys' => $aanestys));
     }
     
     public static function uusi(){
@@ -43,7 +43,7 @@ class AanestysController extends BaseController{
     
    // Kint::dump($params);
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-    $aanestys = new Aanestys($attributes);
+  //  $aanestys = new Aanestys($attributes);
     $errors = $aanestys->errors();
     if(count($errors) == 0){
     $aanestys->save();
@@ -57,7 +57,7 @@ class AanestysController extends BaseController{
 
 public static function edit($id){
     $aanestys = Aanestys::etsi($id);
-    View::make('aanestys/edit.html',array('attributes' => $aanestys));
+    View::make('aanestys/edit.html',array('aanestys' => $aanestys));
 }
 public static function update($id){
     $params = $_POST;
@@ -72,7 +72,7 @@ public static function update($id){
     $aanestys = new Aanestys($attributes);
     $errors = $aanestys->errors();
     if(count($errors) > 0){
-    View::make('aanestys/edit.html', array('errors' => $errors, 'attrimutes' => $attributes));
+    View::make('aanestys/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
         $aanestys->update();
         Redirect::to('/aanestys/' . $aanestys->id, array('message' => 'Aanestys on muokattu!'));
@@ -81,7 +81,7 @@ public static function update($id){
 public static function destroy($id){
     $aanestys = new Aanestys(array('id' => $id));
     $aanestys->destroy();
-    Redirect::to('/aanestys', array('message' => 'Aanestys on poistettu!'));
+    Redirect::to('/aanestys_list', array('message' => 'Aanestys on poistettu!'));
 }
 }
 

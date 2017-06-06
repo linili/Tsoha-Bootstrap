@@ -45,7 +45,7 @@ public static function etsi($id){
 
     return null;
   }
-  public static function save(){
+  public function save(){
     $query = DB::connection()->prepare('INSERT INTO Aanestys (nimi, yllapitaja, status, kuvaus, julkaistu) VALUES (:nimi, :yllapitaja, :status, :kuvaus, :julkaistu) RETURNING id');
     $query->execute(array('nimi' => $this->nimi, 'status' => $this->status, 'yllapitaja' => $this->yllapitaja, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
     // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
@@ -76,9 +76,11 @@ public static function etsi($id){
       return $errors;
   }
   public function validate_status(){
-      return null;
+      $errors = array();
+      return $errors;
   }
   public function validate_julkaistu(){
-      return null;
+      $errors = array();
+      return $errors;
   }
 }
