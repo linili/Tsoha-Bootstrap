@@ -6,7 +6,7 @@ Yleisiä linkkejä:
 * [Linkki dokumentaatiooni](https://github.com/linili/Tsoha-Bootstrap/blob/master/doc/Dokumentaatio.pdf)
 * [Linkki kirjautumissivulle](http://linili.users.cs.helsinki.fi/tsoha/login)
 * [Linkki äänestyslistaan](http://linili.users.cs.helsinki.fi/tsoha/aanestys_list)
-* [Linkki äänestyksen muokkaukseen](http://linili.users.cs.helsinki.fi/tsoha/aanestys_muokkaa)
+* [Linkki äänestyksen muokkaukseen](http://linili.users.cs.helsinki.fi/tsoha/aanestys/1/edit)
 * [Linkki ehdokaslistaan](http://linili.users.cs.helsinki.fi/tsoha/ehdokas_list)
 * [Linkki äänestyksen tietoihin] (http://linili.users.cs.helsinki.fi/tsoha/aanestys_tiedot)
 
