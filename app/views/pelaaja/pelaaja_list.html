@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+{% extends "base.html" %}
+{% block content %}
+   {% if message %}
+   <div class="alert alert-success">
+    {{message}}
+   </div>
+   {% endif %}
+
+  <h1>Pelaajat</h1>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pelaaja in pelaajat %}
+      <tr>
+          <td><a href="{{base_path}}/pelaaja/{{pelaaja.id}}">{{pelaaja.nimi}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

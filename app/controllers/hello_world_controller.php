@@ -10,23 +10,17 @@ require 'app/models/aanestys.php';
 
     public static function sandbox(){
         
-        $paras = new Aanestys(array(
-            'nimi' => 's',
-            'status' => 'käynnissä',
-            'yllapitaja' => 'minä',
-            'kuvaus' => 'vuoden paras',
-            'julkaistu' => '11.12'
-            ));
-        $errors = $paras->errors();
-        Kint::dump($errors);
+       
+     //   $errors = $tommi->errors();
+     //   Kint::dump($errors);
       // Testaa koodiasi täällä
         // Muista sisällyttää malliluokka require-komennolla!
 
-  //  $skyrim = Aanestys::etsi(1);
-  //  $aanestykset = Aanestys::kaikki();
+    $skyrim = Pelaaja::etsi(1);
+    $aanestykset = Pelaaja::kaikki();
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
-  //  Kint::dump($aanestykset);
-  //  Kint::dump($skyrim);
+    Kint::dump($aanestykset);
+    Kint::dump($skyrim);
   
 
       //  View::make('helloworld.html');

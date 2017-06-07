@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa pelaajan {{pelaaja.nimi}} tietoja</h1>
+
+<form method="post" action="{{base_path}}/pelaaja/pelaaja_edit">>
+    <div class="form-group">
+        <label>Nimi</label>
+        <input name="nimi" class="form-control" value="{{pelaaja.nimi}}" type="text">
+    </div>
+    <div class="form-group">
+        <label>Salasana</label>
+        <input type="password" class="form-control" value="Pelaaja.salasana">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+
+<h1>Pelaaja {{pelaaja.nimi}}</h1>
+<!-- Painikkeet tähän -->
+<p>
+    <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/pelaaja/{{pelaaja.id}}/pelaaja_edit" class="btn btn-default">Muokkaa</a>
+
+    <a href="#" class="btn btn-default">Äänestyshistoria</a>
+</p>
+<!-- Tiedot tulee listana tähän -->
+<ul>
+    <li><strong>Aloitusvuosi:</strong> {{pelaaja.aloitusvuosi}}</li>
+    
+</ul>
+{% endblock %}

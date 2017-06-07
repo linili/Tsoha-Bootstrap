@@ -5,16 +5,16 @@ class AanestysController extends BaseController{
         View::make('login.html');
     }
     
-     public static function aanestys_list() {
-        View::make('aanestys/aanestys_list.html');
-    }
-     public static function aanestys_tiedot() {
-        View::make('aanestys/aanestys_tiedot.html');
-    }
+//     public static function aanestys_list() {
+//        View::make('aanestys/aanestys_list.html');
+//    }
+//     public static function aanestys_tiedot() {
+//        View::make('aanestys/aanestys_tiedot.html');
+//    }
     
-    public static function aanestys_muokkaa() {
-        View::make('aanestys/edit.html', array('aanestys' => $aanestys));
-    }
+  //  public static function aanestys_muokkaa() {
+  //      View::make('aanestys/edit.html', array('aanestys' => $aanestys));
+  //  }
     
     public static function index(){
         $aanestykset = Aanestys::kaikki();
@@ -49,7 +49,7 @@ class AanestysController extends BaseController{
     $aanestys->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
-    Redirect::to('/aanestys/' . $aanestys->id, array('message' => 'Äänestys on lisätty!'));
+    Redirect::to('/aanestys/aanestys_list' . $aanestys->id, array('message' => 'Äänestys on lisätty!'));
   }else{
       View::make('aanestys/uusi.html', array('errors' => $errors, 'attributes' => $attributes));
   }
@@ -75,7 +75,7 @@ public static function update($id){
     View::make('aanestys/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
         $aanestys->update();
-        Redirect::to('/aanestys/' . $aanestys->id, array('message' => 'Aanestys on muokattu!'));
+        Redirect::to('/aanestys/tiedot' . $aanestys->id, array('message' => 'Aanestys on muokattu!'));
     }
 }
 public static function destroy($id){
