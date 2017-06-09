@@ -46,7 +46,7 @@ AanestysController::login();
 $routes->post('/aanestys/uusi', function() {
     AanestysController::store();
 });
-//$routes->post('/aanestys/edit', function($id) {
+// $routes->post('/aanestys/edit', function($id) {
 //    AanestysController::update($id);
 // });
 
@@ -56,6 +56,7 @@ $routes->post('/aanestys/:id/edit', function($id) {
 $routes->post('/aanestys/:id/destroy', function($id) {
     AanestysController::destroy($id);
 });
+
 
 // Pelaaja reitit
 

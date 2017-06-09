@@ -2,7 +2,7 @@
 {% block content %}
   <h1>Muokkaa äänestystä {{aanestys.nimi}}</h1>
 
-  <form method="post" action="{{base_path}}/aanestys/edit">>
+  <form method="post" action="{{base_path}}/aanestys/{{aanestys.id}}/edit">>
     <div class="form-group">
       <label>Nimi</label>
       <input name="nimi" class="form-control" value="{{aanestys.nimi}}" type="text">

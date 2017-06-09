@@ -57,7 +57,7 @@ class AanestysController extends BaseController{
 
 public static function edit($id){
     $aanestys = Aanestys::etsi($id);
-    View::make('aanestys/edit.html',array('attributes' => $aanestys));
+    View::make('aanestys/edit.html',array('aanestys' => $aanestys));
 }
 public static function update($id){
     $params = $_POST;
@@ -65,18 +65,21 @@ public static function update($id){
         'id' => $id,
         'nimi' => $params['nimi'],
       'status' => $params['status'],
-      'yllapitaja' => $params['yllapitaja'],
+      'yllapitaja' => $yllapitaja,
       'kuvaus' => $params['kuvaus'],
-      'julkaistu' => $params['julkaistu']
+      'julkaistu' => $julkaistu
     );
+    Kint::dump($params);
+    
     $aanestys = new Aanestys($attributes);
     $errors = $aanestys->errors();
-    if(count($errors) > 0){
+    
+/*    if(count($errors) > 0){
     View::make('aanestys/:id/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
         $aanestys->update();
         Redirect::to('/aanestys/' . $aanestys->id, array('message' => 'Aanestys on muokattu!'));
-    }
+    }*/
 }
 public static function destroy($id){
     $aanestys = new Aanestys(array('id' => $id));

@@ -56,13 +56,14 @@ public static function etsi($id){
      $this->id = $row['id'];
   }
    public static function destroy(){
-    $query = DB::connection()->prepare('DELETE * FROM Aanestys WHERE nimi = :nimi AND status = :status AND yllapitaja = :yllapitaja AND kuvaus = :kuvaus AND julkaistu = :julkaistu');
+    $query = DB::connection()->prepare('DELETE FROM Aanestys WHERE id=:id');
     $query->execute;
   }
    public static function update(){
     $query = DB::connection()->prepare('UPDATE Aanestys SET nimi = :nimi, status = :status, yllapitaja = :yllapitaja, kuvaus = :kuvaus, julkaistu = :julkaistu) WHERE (id = :id)');
     $query->execute(array('nimi' => $this->nimi, 'status' => $this->status, 'yllapitaja' => $this->yllapitaja, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
-  
+    $row = $query->fetch();
+  //  Kint::dump($row);
   }
   
   public function validate_nimi(){
