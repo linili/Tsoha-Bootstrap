@@ -11,8 +11,9 @@ and open the template in the editor.
     {{message}}
 </div>
 {% endif %}
-
-<h1>Pelaaja {{pelaaja.nimi}}</h1>
+{% if user_logged_in %}
+<h1>Pelaaja {{user_logged_in.nimi}}</h1>
+{% endif %}
 <!-- Painikkeet tähän -->
 <p>
     <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/pelaaja/{{pelaaja.id}}/pelaaja_edit" class="btn btn-default">Muokkaa</a>

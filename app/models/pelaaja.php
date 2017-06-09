@@ -72,5 +72,21 @@ public static function etsi($id){
       }
       return $errors;
   }
+  public static function tunnista($nimi, $salasana){
+    $query = DB::connection()->prepare('SELECT * FROM Pelaaja WHERE nimi = :nimi AND salasana = :salasana LIMIT 1');
+    $query->execute(array('nimi' => $nimi, 'salasana' => $salasana));
+    $row = $query->fetch();
+    if($row){
+      $pelaaja = new Pelaaja(array(
+        'id' => $row['id'],
+        'nimi' => $row['nimi'],
+        'aloitusvuosi' => $row['aloitusvuosi'],
+        'salasana' => $row['salasana']
+      ));
+
+      return $pelaaja;
+    }
+    return null;
+  }
 }
 

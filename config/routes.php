@@ -11,6 +11,9 @@ $routes->get('/rekisterointi', function() {
 $routes->get('/login', function() {
     AanestysController::login();
 });
+$routes->post('/login', function(){
+    AanestysController::handle_login();
+});
 
 $routes->get('/edit/:id', function($id) {
     AanestysController::edit($id);
