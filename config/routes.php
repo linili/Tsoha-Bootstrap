@@ -24,16 +24,16 @@ $routes->get('/aanestys/uusi', function() {
     AanestysController::uusi();
 });
 
+$routes->get('/aanestys_list', function() {
+    AanestysController::index();
+});
+
 $routes->get('/aanestys/:id/edit', function($id) {
     AanestysController::edit($id);
 });
 
 $routes->get('/aanestys/:id', function($id) {
     AanestysController::show($id);
-});
-
-$routes->get('/aanestys_list', function() {
-    AanestysController::index();
 });
 
 $routes->get('/aanestys', function() {

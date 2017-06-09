@@ -1,42 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Lisää uusi äänestys</h1>
+<h1>Lisää uusi äänestys</h1>
 
-  {% if errors %}
-    <div class="alert alert-danger">
-      <ul>
-        {% for error in errors %}
-          <li>{{error}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-  
-  <form method="post" action="{{base_path}}/aanestys/uusi">
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
+    {% for error in errors %}
+    <li>{{error}}</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/aanestys/uusi">
     <div class="form-group">
-      <label class="control-label">Nimi</label>
-      <input name="nimi" class="form-control" value="{{attributes.nimi}}" type="text">
-    </div>
-    <div class="form-group">
-      <label class="control-label">Käynnissä/Ei vielä alkanut</label>
-      <input name="status" class="form-control" value="{{attributes.status}}" type="text">
-    </div>
-      <div class="form-group">
-      <label class="control-label">Ylläpitäjä</label>
-      <input name="yllapitaja" class="form-control" value="{{attributes.yllapitaja}}" type="text">
-    </div>
-      
-    <div class="form-group">
-      <label class="control-label">Kuvaus</label>
-      <textarea name="kuvaus" class="form-control">{{attributes.kuvaus}}</textarea>
+        <label class="control-label">Nimi</label>
+        <input name="nimi" class="form-control" value="{{attributes.nimi}}" type="text">
     </div>
     <div class="form-group">
-      <label class="control-label">Päivämäärä</label>
-      <input name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" type="text">
+        <label class="control-label">Käynnissä/Ei vielä alkanut</label>
+        <input name="status" class="form-control" value="{{attributes.status}}" type="text">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Ylläpitäjä</label>
+        <input name="yllapitaja" class="form-control" value="{{attributes.yllapitaja}}" type="text">
     </div>
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Lisää</button>
+        <label class="control-label">Kuvaus</label>
+        <textarea name="kuvaus" class="form-control">{{attributes.kuvaus}}</textarea>
     </div>
-  </form>
+    <div class="form-group">
+        <label class="control-label">Päivämäärä</label>
+        <input name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lisää</button>
+    </div>
+</form>
 {% endblock %}

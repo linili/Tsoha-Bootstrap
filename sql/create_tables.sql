@@ -23,4 +23,5 @@ aanestys_id INTEGER REFERENCES Aanestys(id)
 CREATE TABLE Aani(
 aanestaja_id INTEGER REFERENCES Pelaaja(id),
 ehdokas_id INTEGER REFERENCES Ehdokas(id));
+aanestys_id INTEGER REFERENCES Aanestys(id);
 

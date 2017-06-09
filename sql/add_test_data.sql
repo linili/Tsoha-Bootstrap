@@ -3,5 +3,5 @@ INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuod
 INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES ('Matti Mainio', '2016', 'qwer');
 INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES ('Minna Mainio', '2015', 'asdf');
 INSERT INTO Ehdokas (pelaaja_id, aanestys_id) VALUES (1,1);
-INSERT INTO Aani(aanestaja_id, ehdokas_id) VALUES(1, 1);
+INSERT INTO Aani(aanestaja_id, ehdokas_id, aanestys_id) VALUES(1, 1, 1);
 -- Lisää INSERT INTO lauseet tähän tiedostoon
