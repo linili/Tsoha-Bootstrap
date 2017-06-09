@@ -19,8 +19,8 @@ $routes->get('/edit/:id', function($id) {
     AanestysController::edit($id);
 });
 
-$routes->get('/ehdokas_list', function() {
-    HelloWorldController::ehdokas_list();
+$routes->get('/pelaajat', function() {
+    PelaajaController::index();
 });
 
 $routes->get('/aanestys/uusi', function() {
