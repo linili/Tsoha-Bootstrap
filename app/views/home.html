@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+
+{% if user_logged_in %}
+<div class="page-header">
+<h1>On aika äänestää {{user_logged_in.nimi}}</h1>
+</div>
+<p>
+<a href="https://linili.users.cs.helsinki.fi/tsoha/aanestys_list" class="btn btn-primary btn-lg">Äänestykset<span class="glyphicon glyphicon-chevron-right"></span></a>
+<a href="https://linili.users.cs.helsinki.fi/tsoha/pelaaja/{{user_logged_in.id/edit}}" class="btn btn-primary btn-lg">Muokkaa tietojasi<span class="glyphicon glyphicon-chevron-right"></span></a>
+<a href="https://linili.users.cs.helsinki.fi/tsoha/pelaaja/pelaaja_list" class="btn btn-primary btn-lg">Pelaajat<span class="glyphicon glyphicon-chevron-right"></span></a>
+</p>
+{% endif %}
+{% if !user_logged_in %}
   <div class="page-header">
     <h1>Tervetuloa Äänestämään!</h1>
   </div>
@@ -8,4 +26,5 @@
   <p>
     <a href="http://linili.users.cs.helsinki.fi/tsoha/login" class="btn btn-primary btn-lg">Kirjaudu tästä <span class="glyphicon glyphicon-chevron-right"></span></a>
   </p>
+  {% endif %}
 {% endblock %}

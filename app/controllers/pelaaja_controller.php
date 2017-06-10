@@ -44,11 +44,12 @@ public static function edit($id){
     View::make('pelaaja/pelaaja_edit.html',array('pelaaja' => $pelaaja));
 }
 public static function update($id){
+    $pelaaja_vanha = Pelaaja::etsi($id);
     $params = $_POST;
     $attributes = array(
         'id' => $id,
         'nimi' => $params['nimi'],
-      'aloitusvuosi' => $params['aloitusvuosi'],
+      'aloitusvuosi' => {{$pelaaja_vanha.aloitusvuosi}},
       'salasana' => $params['salasana']
     );
     $pelaaja = new Pelaaja($attributes);
@@ -57,13 +58,13 @@ public static function update($id){
     View::make('pelaaja/pelaaja_edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
         $pelaaja->update();
-        Redirect::to('/pelaaja/pelaaja_tiedot' . $pelaaja->id, array('message' => 'Pelaajan tietoja on muokattu!'));
+        Redirect::to('/pelaaja/' . $pelaaja->id, array('message' => 'Pelaajan tietoja on muokattu!'));
     }
 }
 public static function destroy($id){
     $pelaaja = new Pelaaja(array('id' => $id));
     $pelaaja->destroy();
-    Redirect::to('/pelaaja_list', array('message' => 'Pelaaja on poistettu!'));
+    Redirect::to('/pelaaja_list', array('message' => 'Pelaaja ' . {{self::get_user_logged_in().nimi}} . 'on poistettu!'));
 }
 }
 

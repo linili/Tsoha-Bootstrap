@@ -6,7 +6,9 @@ and open the template in the editor.
 -->
 {% extends "base.html" %}
 {% block content %}
-<h1>Muokkaa pelaajan {{pelaaja.nimi}} tietoja</h1>
+{% if user_logged_in %}
+<h1>Muokkaa pelaajan {{user_logged_in.nimi}} tietoja</h1>
+
 
 <form method="post" action="{{base_path}}/pelaaja/pelaaja_edit">>
     <div class="form-group">
@@ -15,10 +17,11 @@ and open the template in the editor.
     </div>
     <div class="form-group">
         <label>Salasana</label>
-        <input type="password" class="form-control" value="Pelaaja.salasana">
+        <input type="password" class="form-control" value="{{pelaaja.salasana}}">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Tallenna</button>
     </div>
 </form>
+{% endif %}
 {% endblock %}

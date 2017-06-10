@@ -1,28 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Ehdokkaat</h1>
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+  <h1>Ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
 
   <p>
-    <a href="#" class="btn btn-success">Lisää ehdokas</a>
+    <a href="{{base.path}}/ehdokas/uusi" class="btn btn-success">Lisää ehdokas</a>
   </p>
 
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>Ehdokas</th>
-        <th>Rekisteröitymispvm</th>
+        <th>Aloitusvuosi</th>
         <th></th>
       </tr>
     </thead>
 
     <tbody>
       <!-- Listataan ehdokkaat tähän -->
+      {% for ehdokas in ehdokkaat %}
       <tr>
-        <td>Matti Mono</td>
-        <td>1.12.2016</td>
-        <th><a class="btn btn-default btn-sm" href="#">Muokkaa</a></th>
-         <th><a class="btn btn-default btn-sm" href="#">Poista</a></th>
+        <td>{{Pelaaja::etsi({{ehdokas.pelaaja_id}}).nimi}}</td>
+        <td>{{Pelaaja::etsi({{ehdokas.pelaaja_id}}).aloitusvuosi}}</td>
+         <th><a <form method="post" action ="{{base_path}}/ehdokas/{{ehdokas.id}}/destroy" style="display: inline-block;">
+                        <button type="submit" class="btn btn-danger">Poista</button>
+                    </form>
+                </a></th>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 {% endblock %}

@@ -17,12 +17,14 @@ and open the template in the editor.
     <thead>
       <tr>
         <th>Nimi</th>
+        <th>Aloitusvuosi</th>
       </tr>
     </thead>
     <tbody>
       {% for pelaaja in pelaajat %}
       <tr>
-          <td><a href="{{base_path}}/pelaaja/{{pelaaja.id}}">{{pelaaja.nimi}}</td>
+          <td>{{pelaaja.nimi}}</td>
+          <td>{{pelaaja.aloitusvuosi}}</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -44,7 +44,7 @@ public static function etsi($id){
   }
   public function save(){
     $query = DB::connection()->prepare('INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES (:nimi, :aloitusvuosi, :salasana) RETURNING id');
-    $query->execute(array('nimi' => $this->nimi, 'aloitusvuosi' => $this->aloitusvuosi, 'salasana'));
+    $query->execute(array('nimi' => $this->nimi, 'aloitusvuosi' => $this->aloitusvuosi, 'salasana' => $this->salasana));
     // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
     $row = $query->fetch();
    // Kint::trace();

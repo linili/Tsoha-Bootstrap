@@ -19,10 +19,6 @@ $routes->get('/edit/:id', function($id) {
     AanestysController::edit($id);
 });
 
-$routes->get('/pelaajat', function() {
-    PelaajaController::index();
-});
-
 $routes->get('/aanestys/uusi', function() {
     AanestysController::uusi();
 });
@@ -42,9 +38,12 @@ $routes->get('/aanestys/:id', function($id) {
 $routes->get('/aanestys', function() {
     AanestysController::index();
 });
-$routes->get('/', function() {
-AanestysController::login();
+$routes->get('/home', function() {
+AanestysController::home();
 });
+$routes->get('/', function() {
+    AanestysController::home();
+})
 
 $routes->post('/aanestys/uusi', function() {
     AanestysController::store();
@@ -67,15 +66,11 @@ $routes->get('/pelaaja/:id/edit', function($id) {
     PelaajaController::edit($id);
 });
 
-$routes->get('/pelaaja/:id/destroy', function($id) {
-    PelaajaController::destroy($id);
-});
-
-$routes->get('pelaaja/pelaja_list', function() {
+$routes->get('/pelaaja/pelaaja_list', function() {
     PelaajaController::index();
 });
 
-$routes->get('pelaaja', function() {
+$routes->get('/pelaajat', function() {
     PelaajaController::index();
 });
 
@@ -86,6 +81,18 @@ $routes->get('/pelaaja/:id', function($id) {
 $routes->post('/pelaaja/:id/edit', function($id) {
     PelaajaController::update($id);
 });
-$routes->post('/aanestys/:id/destroy', function($id) {
+$routes->post('/pelaaja/:id/destroy', function($id) {
     PelaajaController::destroy($id);
 });
+
+// Ehdokas reitit
+
+$routes->get('/ehdokas/ehdokas_list', function($aanestys_id) {
+    EhdokasController::index($aanestys_id);
+})
+$routes->get('/ehdokas/uusi', function($aanestys_id) {
+    EhdokasController::uusi($aanestys_id);
+})
+$routes->post('ehdokas/:id/destroy', function($aanestys_id)) {
+    EhdokasController::destroy($id, $aanestys_id);
+}

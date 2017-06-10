@@ -11,7 +11,7 @@ class AanestysController extends BaseController{
         VIew::make('login.html', array('error' => 'Väärä nimi tai salasana!', 'nimi' => $params[nimi]));
       }else{
         $_SESSION['pelaaja'] = $pelaaja->id;
-        Redirect::to('/aanestys_list', array('message' => 'Tervetuloa takaisin' . $pelaaja->nimi . '!'));
+        Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . $pelaaja->nimi . '!'));
       }
     }
     
@@ -25,6 +25,9 @@ class AanestysController extends BaseController{
   //  public static function aanestys_muokkaa() {
   //      View::make('aanestys/edit.html', array('aanestys' => $aanestys));
   //  }
+    public static function home(){
+      View::make('home.html');
+    }
     
     public static function index(){
         $aanestykset = Aanestys::kaikki();
@@ -70,14 +73,15 @@ public static function edit($id){
     View::make('aanestys/edit.html',array('aanestys' => $aanestys));
 }
 public static function update($id){
+  $aanestys_ennen = Aanestys::etsi($id);
     $params = $_POST;
     $attributes = array(
         'id' => $id,
         'nimi' => $params['nimi'],
       'status' => $params['status'],
-      'yllapitaja' => $yllapitaja,
+      'yllapitaja' => {{$aanestys_ennen.nimi}},
       'kuvaus' => $params['kuvaus'],
-      'julkaistu' => $julkaistu
+      'julkaistu' => {{$aanestys_ennen.julkaistu}}
     );
     Kint::dump($params);
     
