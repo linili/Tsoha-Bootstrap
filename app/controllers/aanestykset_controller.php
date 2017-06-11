@@ -19,16 +19,6 @@ class AanestysController extends BaseController{
       Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
     
-//     public static function aanestys_list() {
-//        View::make('aanestys/aanestys_list.html');
-//    }
-//     public static function aanestys_tiedot() {
-//        View::make('aanestys/aanestys_tiedot.html');
-//    }
-    
-  //  public static function aanestys_muokkaa() {
-  //      View::make('aanestys/edit.html', array('aanestys' => $aanestys));
-  //  }
     public static function home(){
       View::make('home.html');
     }

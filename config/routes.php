@@ -99,3 +99,9 @@ $routes->get('/ehdokas/uusi', function($aanestys_id) {
 $routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id)) {
     EhdokasController::destroy($id, $aanestys_id);
 }
+
+// Aani reitit
+
+$routes->post('aanestys/:aanestys_id/:ehdokas.id/aani', function($aanestys_id, $ehdokas_id)) {
+    AaniController::uusi_aani($aanestys_id, $ehdokas_id);
+}
