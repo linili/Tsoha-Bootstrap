@@ -87,12 +87,12 @@ $routes->post('/pelaaja/:id/destroy', function($id) {
 
 // Ehdokas reitit
 
-$routes->get('/ehdokas/ehdokas_list', function($aanestys_id) {
+$routes->get('/aanestys/:aanestys_id/ehdokkaat', function($aanestys_id) {
     EhdokasController::index($aanestys_id);
 })
 $routes->get('/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::uusi($aanestys_id);
 })
-$routes->post('ehdokas/:id/destroy', function($aanestys_id)) {
+$routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id)) {
     EhdokasController::destroy($id, $aanestys_id);
 }

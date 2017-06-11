@@ -5,7 +5,7 @@
     {{message}}
 </div>
 {% endif %}
-
+{% import "macros/forms.html" as forms %}
 <h1>Äänestykset</h1>
 
 <p>
@@ -20,7 +20,7 @@
             <th>Ylläpitäjä</th>
             <th>Kuvaus</th>
             <th>Julkaistu</th>
-            <th></th>
+            <th>Äänestä</th>
         </tr>
     </thead>
 
@@ -33,11 +33,10 @@
             <td>{{aanestys.yllapitaja}}</td>
             <td>{{aanestys.kuvaus}}</td>
             <td>{{aanestys.julkaistu}}</td>
-            <th><a class="btn btn-default btn-sm" href="{{base_path}}/aanestys/{{aanestys.id}}/edit">Muokkaa</a></th>
-            <th><a <form method="post" action ="{{base_path}}/aanestys/{{aanestys.id}}/destroy" style="display: inline-block;">
-                        <button type="submit" class="btn btn-danger">Poista</button>
-                    </form>
-                </a></th>
+            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokkaat">Mene äänestykseen</a></td>
+            {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}
+            {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}
+
         </tr>
         {% endfor %}
     </tbody>

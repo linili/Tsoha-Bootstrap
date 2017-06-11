@@ -28,8 +28,8 @@ class EhdokasController extends BaseController{
   }else{
       View::make('pelaaja/uusi.html', array('errors' => $errors, 'attributes' => $attributes));
   }
-public static function destroy($id){
-    $ehdokas = new Ehdokas(array('id' => $id));
+public static function destroy($id, $aanestys_id){
+    $ehdokas = new Ehdokas(array('id' => $id, 'aanestys_id' => $aanestys_id));
     $ehdokas->destroy();
     Redirect::to('aanestys/:id/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));
 }
