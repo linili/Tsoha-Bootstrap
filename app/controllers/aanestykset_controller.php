@@ -14,6 +14,10 @@ class AanestysController extends BaseController{
         Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . $pelaaja->nimi . '!'));
       }
     }
+    public static function logout(){
+      $_SESSION['pelaaja'] = null;
+      Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+    }
     
 //     public static function aanestys_list() {
 //        View::make('aanestys/aanestys_list.html');
@@ -30,19 +34,23 @@ class AanestysController extends BaseController{
     }
     
     public static function index(){
+      self::check_logged_in();
         $aanestykset = Aanestys::kaikki();
         View::make('aanestys/aanestys_list.html', array('aanestykset' => $aanestykset));
     }
     public static function show($id){
+      self::check_logged_in();
         $aanestys = Aanestys::etsi($id);
         View::make('aanestys/aanestys_tiedot.html', array('aanestys' => $aanestys));
     }
     
     public static function uusi(){
+      self::check_logged_in();
         View::make('aanestys/uusi.html');
     }
     
     public static function store(){
+      self::check_logged_in();
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
     // Alustetaan uusi Aanestys-luokan olion käyttäjän syöttämillä arvoilla
@@ -69,10 +77,12 @@ class AanestysController extends BaseController{
 }
 
 public static function edit($id){
+  self::check_logged_in();
     $aanestys = Aanestys::etsi($id);
     View::make('aanestys/edit.html',array('aanestys' => $aanestys));
 }
 public static function update($id){
+  self::check_logged_in();
   $aanestys_ennen = Aanestys::etsi($id);
     $params = $_POST;
     $attributes = array(
@@ -96,6 +106,7 @@ public static function update($id){
     }*/
 }
 public static function destroy($id){
+  self::check_logged_in();
     $aanestys = new Aanestys(array('id' => $id));
     $aanestys->destroy();
     Redirect::to('aanestys/aanestys_list', array('message' => 'Aanestys on poistettu!'));

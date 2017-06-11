@@ -14,6 +14,9 @@ $routes->get('/login', function() {
 $routes->post('/login', function(){
     AanestysController::handle_login();
 });
+$routes->post('/logout', function()){
+    AanestysController::logout();
+}
 
 $routes->get('/edit/:id', function($id) {
     AanestysController::edit($id);
