@@ -24,7 +24,7 @@ class Aani extends BaseModel{
 	return $aanten_maara;
 	}
 
-public static function etsi($id){
+ /*public static function etsi($id){
     $query = DB::connection()->prepare('SELECT * FROM Ehdokas WHERE id = :id LIMIT 1');
     $query->execute(array('id' => $id));
     $row = $query->fetch();
@@ -40,7 +40,8 @@ public static function etsi($id){
     }
 
     return null;
-  }
+  } */
+  
   public function save(){
     $query = DB::connection()->prepare('INSERT INTO Aani (aanestaja_id, ehdokas_id, aanestys_id) VALUES (:aanestaja_id, :ehdokas_id, :aanestys_id)');
     $query->execute(array('aanestaja_id' => $this->aanestaja_id, 'ehdokas_id' => $this->ehdokas_id, 'aanestys_id' => $this->aanestys_id));

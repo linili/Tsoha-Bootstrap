@@ -70,11 +70,13 @@ class AanestysController extends BaseController{
 public static function edit($id){
   self::check_logged_in();
     $aanestys = Aanestys::etsi($id);
+  self::check_yllapitaja($aanestys);  
     View::make('aanestys/edit.html',array('aanestys' => $aanestys));
 }
 public static function update($id){
   self::check_logged_in();
   $aanestys_ennen = Aanestys::etsi($id);
+   self::check_yllapitaja($aanestys_ennen);
     $params = $_POST;
     $attributes = array(
         'id' => $id,
@@ -97,7 +99,8 @@ public static function update($id){
 }
 public static function destroy($id){
   self::check_logged_in();
-    $aanestys = new Aanestys(array('id' => $id));
+   $aanestys = Aanestys::etsi($id);
+  self::check_yllapitaja($aanestys); 
     $aanestys->destroy();
     Redirect::to('aanestys/aanestys_list', array('message' => 'Aanestys on poistettu!'));
 }

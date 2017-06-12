@@ -10,7 +10,7 @@ CREATE TABLE Aanestys(
 id SERIAL PRIMARY KEY,
 nimi varchar(50) NOT NULL,
 status boolean DEFAULT TRUE,
-yllapitaja INTEGER REFERENCES Pelaaja_id,
+yllapitaja INTEGER REFERENCES Pelaaja(id),
 kuvaus varchar(400) NOT NULL,
 julkaistu DATE
 );
@@ -23,6 +23,6 @@ aanestys_id INTEGER REFERENCES Aanestys(id)
 
 CREATE TABLE Aani(
 aanestaja_id INTEGER REFERENCES Pelaaja(id),
-ehdokas_id INTEGER REFERENCES Ehdokas(id));
-aanestys_id INTEGER REFERENCES Aanestys(id);
-
+ehdokas_id INTEGER REFERENCES Ehdokas(id),
+aanestys_id INTEGER REFERENCES Aanestys(id)
+);

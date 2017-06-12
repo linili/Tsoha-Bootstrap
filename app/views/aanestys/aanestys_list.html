@@ -20,7 +20,7 @@
             <th>Ylläpitäjä</th>
             <th>Kuvaus</th>
             <th>Julkaistu</th>
-            <th>Äänestä</th>
+            <th></th>
         </tr>
     </thead>
 
@@ -42,12 +42,13 @@
             <!-- jos äänestys on käynnissä, näytetään seuraavat-->
             {% if aanestys.status %}
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokkaat">Mene äänestykseen</a></td>
-            {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}
-            {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}
             <!-- jos äänestys on ohi, näytetään seuraavat-->
              {% else %}
              <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/tulokset">Tulokset</a></td>
               {% endif %}
+              <!--Jos ylläpitäjä, näytetään seuraavat-->
+               {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}
+            {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}
         </tr>
         {% endfor %}
     </tbody>
