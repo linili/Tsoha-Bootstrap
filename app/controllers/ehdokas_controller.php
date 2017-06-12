@@ -3,32 +3,38 @@
 class EhdokasController extends BaseController{
     
     public static function index($aanestys_id){
+        self::check_logged_in();
         $ehdokkaat = Ehdokas::kaikki($aanestys_id);
         View::make('ehdokas/ehdokas_list.html', array('ehdokkaat' => $ehdokkaat));
     }
     
-    public static function uusi(){
-        View::make('ehdokas/uusi.html');
+    public static function uusi($aanestys_id){
+        self::check_logged_in();
+        $pelaajat = Pelaaja::kaikki();
+        $aanestys = Aanestys::etsi($aanestys_id);
+        View::make('ehdokas/uusi.html', array('pelaajat' => $pelaajat, 'aanestys' => $aanestys));
     }
     
-    public static function store(){
-    // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
+    public static function store($aanestys_id){
+        self::check_logged_in();
     $params = $_POST;
-    // Alustetaan uusi Ehdokas-luokan olion käyttäjän syöttämillä arvoilla
-    $ehdokas = new Ehdokas(array(
-      'pelaaja_id' => $params['nimi'], //käyttäjän syöttämästä nimestä pitäisi saada id.
-    ));
-    
-   // Kint::dump($params);
-    // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-    $ehdokas->save();
+    $pelaaja_idt = $params['ehdokkaat']
+    foreach ($pelaaja_idt as $pelaaja_id) {
+         $attributes = array(
+    'aanestys_id' = $aanestys_id,
+    'pelaaja_id' = $pelaaja_id
+        );
+         $ehdokas = new Ehdokas($attributes);
+         $ehdokas->save();
+    }
 
-    // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
-    Redirect::to('/pelaaja/pelaaja_list' . $pelaaja->id, array('message' => 'Pelaaja on lisätty!'));
+    // Ohjataan käyttäjä lisäyksen jälkeen aanestyksen esittelysivulle
+    Redirect::to('/aanestys/{{$aanestys_id}}', array('message' => 'Ehdokkaat on lisätty!'));
   }else{
-      View::make('pelaaja/uusi.html', array('errors' => $errors, 'attributes' => $attributes));
+      View::make('aanestys/aanestys_list.html'));
   }
 public static function destroy($id, $aanestys_id){
+    self::check_logged_in();
     $ehdokas = new Ehdokas(array('id' => $id, 'aanestys_id' => $aanestys_id));
     $ehdokas->destroy();
     Redirect::to('aanestys/:id/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));

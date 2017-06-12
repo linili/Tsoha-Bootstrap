@@ -3,10 +3,12 @@
 class PelaajaController extends BaseController{
     
     public static function index(){
+        self::check_logged_in();
         $pelaajat = Pelaaja::kaikki();
         View::make('pelaaja/pelaaja_list.html', array('pelaajat' => $pelaajat));
     }
     public static function show($id){
+        self::check_logged_in();
         $pelaaja = Pelaaja::etsi($id);
         View::make('pelaaja/pelaaja_tiedot.html', array('pelaaja' => $pelaaja));
     }
@@ -16,6 +18,7 @@ class PelaajaController extends BaseController{
  //   }
     
     public static function store(){
+        self::check_logged_in();
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
     // Alustetaan uusi Pelaaja-luokan olion käyttäjän syöttämillä arvoilla
@@ -40,10 +43,12 @@ class PelaajaController extends BaseController{
 }
 
 public static function edit($id){
+    self::check_logged_in();
     $pelaaja = Pelaaja::etsi($id);
     View::make('pelaaja/pelaaja_edit.html',array('pelaaja' => $pelaaja));
 }
 public static function update($id){
+    self::check_logged_in();
     $pelaaja_vanha = Pelaaja::etsi($id);
     $params = $_POST;
     $attributes = array(
@@ -62,6 +67,7 @@ public static function update($id){
     }
 }
 public static function destroy($id){
+    self::check_logged_in();
     $pelaaja = new Pelaaja(array('id' => $id));
     $pelaaja->destroy();
     Redirect::to('/pelaaja_list', array('message' => 'Pelaaja ' . {{self::get_user_logged_in().nimi}} . 'on poistettu!'));

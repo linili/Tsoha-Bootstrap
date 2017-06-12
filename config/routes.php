@@ -93,9 +93,12 @@ $routes->post('/pelaaja/:id/destroy', function($id) {
 $routes->get('/aanestys/:aanestys_id/ehdokkaat', function($aanestys_id) {
     EhdokasController::index($aanestys_id);
 })
-$routes->get('/ehdokas/uusi', function($aanestys_id) {
+$routes->get('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::uusi($aanestys_id);
 })
+$routes->post('aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id)) {
+    EhdokasController::store($aanestys_id);
+}
 $routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id)) {
     EhdokasController::destroy($id, $aanestys_id);
 }

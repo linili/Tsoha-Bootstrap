@@ -1,6 +1,7 @@
 <{% extends "base.html" %}
 {% block content %}
-<h1>Lisää uusi ehdokas</h1>
+{% if {{user_logged_in.nimi}} = aanestys.yllapitaja %}
+<h1>Lisää ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
 
 {% if errors %}
 <div class="alert alert-danger">
@@ -14,11 +15,16 @@
 
 <form method="post" action="{{base_path}}/ehdokas/uusi">
     <div class="form-group">
-        <label class="control-label">Nimi</label>
-        <input name="nimi" class="form-control" value="{{attributes.nimi}}" type="text">
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Lisää</button>
+       <label>Pelaajat</label>
+       <select class="form-control" name="ehdokkaat[]" multiple="">
+       {% for pelaaja in pelaajat %}
+       <option value="{{pelaaja_id}}">{{pelaaja.nimi}}</option>
+       {% endfor %}
+       </select> 
+        <button type="submit" class="btn btn-primary">Lisää ehdokkaat</button>
     </div>
 </form>
+{% else %}
+<h1>Et ole ylläpitäjä, joten et voi lisätä ehdokkaita</h1>
+{% endif %}
 {% endblock %}
