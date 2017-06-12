@@ -9,9 +9,14 @@
 <h1>{{aanestys.nimi}}</h1>
 <!-- Painikkeet tähän -->
 <p>
-    <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/aanestys/{{aanestys.id}}/edit" class="btn btn-default">Muokkaa</a>
+{% if aanestys.status %}
+    <a href="{{base_path}}/aanestys/{{aanestys.id}}/edit" class="btn btn-default">Muokkaa</a>
 
     <a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas_list" class="btn btn-default">Ehdokkaat</a>
+
+{% else %}
+	<a href="{{base_path}}/aanestys/{{aanestys.id}}/tulokset" class="btn-default">Tulokset</a>
+{% endif %}    
 </p>
 <!-- Tiedot tulee listana tähän -->
 <ul>

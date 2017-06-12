@@ -8,6 +8,10 @@ class AaniController extends BaseController{
      $aani = new Aani($aanestaja_id, $ehdokas_id, $aanestys_id);
   }
 
+  public static function ehdokkaan_aanet($aanestys_id, $ehdokas_id) {
+    Aani::ehdokkaan_aanet($ehdokas_id, $aanestys_id);
+  }
+
   /*  public static function
     
     public static function index($aanestys_id, $ehdokas_id){

@@ -29,14 +29,25 @@
         <!-- Listataan äänestykset tähän -->
         <tr>
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}">{{aanestys.nimi}}</a></td>
-            <td>{{aanestys.status}}</td>
+            <td>
+            {% if aanetys.status %}
+            <label class="label label-succes">Käynnissä
+            {% else %}
+            <label class="label label-danger">Äänestys on ohi
+            {% endif %}
+            </td>
             <td>{{aanestys.yllapitaja}}</td>
             <td>{{aanestys.kuvaus}}</td>
             <td>{{aanestys.julkaistu}}</td>
+            <!-- jos äänestys on käynnissä, näytetään seuraavat-->
+            {% if aanestys.status %}
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokkaat">Mene äänestykseen</a></td>
             {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}
             {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}
-
+            <!-- jos äänestys on ohi, näytetään seuraavat-->
+             {% else %}
+             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/tulokset">Tulokset</a></td>
+              {% endif %}
         </tr>
         {% endfor %}
     </tbody>

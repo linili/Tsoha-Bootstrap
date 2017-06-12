@@ -9,6 +9,12 @@ class Aanestys extends BaseModel{
 
 	public static function kaikki(){
 	$query = DB::connection()->prepare('SELECT * FROM Aanestys');
+    $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+    $query->bindValue(':nimi', $this->nimi, PDO::PARAM_STR);
+    $query->bindValue(':status', $this->status, PDO::PARAM_BOOL);
+    $query->bindValue(':yllapitaja', $this->yllapitaja, PDO::PARAM_INT);
+    $query->bindValue(':kuvaus', $this->kuvaus, PDO::PARAM_STR);
+    $query->bindValue(':julkaistu', $this->julkaistu, PDO::PARAM_DATE);
 	$query->execute();
 	$rows = $query->fetchAll();
 	$aanestykset = array();
@@ -27,6 +33,12 @@ class Aanestys extends BaseModel{
 
 public static function etsi($id){
     $query = DB::connection()->prepare('SELECT * FROM Aanestys WHERE id = :id LIMIT 1');
+    $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+    $query->bindValue(':nimi', $this->nimi, PDO::PARAM_STR);
+    $query->bindValue(':status', $this->status, PDO::PARAM_BOOL);
+    $query->bindValue(':yllapitaja', $this->yllapitaja, PDO::PARAM_INT);
+    $query->bindValue(':kuvaus', $this->kuvaus, PDO::PARAM_STR);
+    $query->bindValue(':julkaistu', $this->julkaistu, PDO::PARAM_DATE);
     $query->execute(array('id' => $id));
     $row = $query->fetch();
 
@@ -47,6 +59,12 @@ public static function etsi($id){
   }
   public function save(){
     $query = DB::connection()->prepare('INSERT INTO Aanestys (nimi, yllapitaja, status, kuvaus, julkaistu) VALUES (:nimi, :yllapitaja, :status, :kuvaus, :julkaistu) RETURNING id');
+    $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+    $query->bindValue(':nimi', $this->nimi, PDO::PARAM_STR);
+    $query->bindValue(':status', $this->status, PDO::PARAM_BOOL);
+    $query->bindValue(':yllapitaja', $this->yllapitaja, PDO::PARAM_INT);
+    $query->bindValue(':kuvaus', $this->kuvaus, PDO::PARAM_STR);
+    $query->bindValue(':julkaistu', $this->julkaistu, PDO::PARAM_DATE);
     $query->execute(array('nimi' => $this->nimi, 'status' => $this->status, 'yllapitaja' => $this->yllapitaja, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
     // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
     $row = $query->fetch();
@@ -57,10 +75,22 @@ public static function etsi($id){
   }
    public static function destroy(){
     $query = DB::connection()->prepare('DELETE FROM Aanestys WHERE id=:id');
+    $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+    $query->bindValue(':nimi', $this->nimi, PDO::PARAM_STR);
+    $query->bindValue(':status', $this->status, PDO::PARAM_BOOL);
+    $query->bindValue(':yllapitaja', $this->yllapitaja, PDO::PARAM_INT);
+    $query->bindValue(':kuvaus', $this->kuvaus, PDO::PARAM_STR);
+    $query->bindValue(':julkaistu', $this->julkaistu, PDO::PARAM_DATE);
     $query->execute;
   }
    public static function update(){
     $query = DB::connection()->prepare('UPDATE Aanestys SET nimi = :nimi, status = :status, yllapitaja = :yllapitaja, kuvaus = :kuvaus, julkaistu = :julkaistu) WHERE (id = :id)');
+    $query->bindValue(':id', $this->id, PDO::PARAM_INT);
+    $query->bindValue(':nimi', $this->nimi, PDO::PARAM_STR);
+    $query->bindValue(':status', $this->status, PDO::PARAM_BOOL);
+    $query->bindValue(':yllapitaja', $this->yllapitaja, PDO::PARAM_INT);
+    $query->bindValue(':kuvaus', $this->kuvaus, PDO::PARAM_STR);
+    $query->bindValue(':julkaistu', $this->julkaistu, PDO::PARAM_DATE);
     $query->execute(array('nimi' => $this->nimi, 'status' => $this->status, 'yllapitaja' => $this->yllapitaja, 'kuvaus' => $this->kuvaus, 'julkaistu' => $this->julkaistu));
     $row = $query->fetch();
   //  Kint::dump($row);

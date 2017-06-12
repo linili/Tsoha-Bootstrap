@@ -1,17 +1,18 @@
-CREATE TABLE Aanestys(
-id SERIAL PRIMARY KEY,
-nimi varchar(50) NOT NULL,
-status varchar(50) NOT NULL,
-yllapitaja varchar(50) NOT NULL,
-kuvaus varchar(100) NOT NULL,
-julkaistu Varchar(50)
-);-- Lisää CREATE TABLE lauseet tähän tiedostoon
 
 CREATE TABLE Pelaaja(
 id SERIAL PRIMARY KEY,
 nimi varchar(50) NOT NULL,
 aloitusvuosi varchar(50),
 salasana varchar(50) NOT NULL
+);
+
+CREATE TABLE Aanestys(
+id SERIAL PRIMARY KEY,
+nimi varchar(50) NOT NULL,
+status boolean DEFAULT TRUE,
+yllapitaja INTEGER REFERENCES Pelaaja_id,
+kuvaus varchar(400) NOT NULL,
+julkaistu DATE
 );
 
 CREATE TABLE Ehdokas(

@@ -41,13 +41,14 @@ class AanestysController extends BaseController{
     
     public static function store(){
       self::check_logged_in();
+      $user_logged_in = self::get_user_logged_in();
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
     // Alustetaan uusi Aanestys-luokan olion käyttäjän syöttämillä arvoilla
     $attributes = array(
       'nimi' => $params['nimi'],
-      'status' => $params['status'],
-      'yllapitaja' => $params['yllapitaja'],
+      'status' => TRUE,
+      'yllapitaja' => $user_logged_in->id,
       'kuvaus' => $params['kuvaus'],
       'julkaistu' => $params['julkaistu']
     );
@@ -78,22 +79,21 @@ public static function update($id){
     $attributes = array(
         'id' => $id,
         'nimi' => $params['nimi'],
-      'status' => $params['status'],
-      'yllapitaja' => {{$aanestys_ennen.nimi}},
+      'status' => $params[''],
+      'yllapitaja' => $aanestys_ennen->nimi}},
       'kuvaus' => $params['kuvaus'],
-      'julkaistu' => {{$aanestys_ennen.julkaistu}}
+      'julkaistu' => $aanestys_ennen->julkaistu}}
     );
-    Kint::dump($params);
     
     $aanestys = new Aanestys($attributes);
     $errors = $aanestys->errors();
     
-/*    if(count($errors) > 0){
+    if(count($errors) > 0){
     View::make('aanestys/:id/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
         $aanestys->update();
         Redirect::to('/aanestys/' . $aanestys->id, array('message' => 'Aanestys on muokattu!'));
-    }*/
+    }
 }
 public static function destroy($id){
   self::check_logged_in();
