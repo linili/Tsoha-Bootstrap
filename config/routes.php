@@ -14,9 +14,9 @@ $routes->get('/login', function() {
 $routes->post('/login', function(){
     AanestysController::handle_login();
 });
-$routes->post('/logout', function()){
+$routes->post('/logout', function(){
     AanestysController::logout();
-}
+});
 
 $routes->get('/edit/:id', function($id) {
     AanestysController::edit($id);
@@ -46,7 +46,7 @@ AanestysController::home();
 });
 $routes->get('/', function() {
     AanestysController::home();
-})
+});
 
 $routes->post('/aanestys/uusi', function() {
     AanestysController::store();
@@ -92,19 +92,19 @@ $routes->post('/pelaaja/:id/destroy', function($id) {
 
 $routes->get('/aanestys/:aanestys_id/ehdokkaat', function($aanestys_id) {
     EhdokasController::index($aanestys_id);
-})
+});
 $routes->get('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::uusi($aanestys_id);
-})
-$routes->post('aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id)) {
+});
+$routes->post('aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::store($aanestys_id);
-}
-$routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id)) {
+});
+$routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id) {
     EhdokasController::destroy($id, $aanestys_id);
-}
+});
 
 // Aani reitit
 
-$routes->post('aanestys/:aanestys_id/:ehdokas.id/aani', function($aanestys_id, $ehdokas_id)) {
+$routes->post('aanestys/:aanestys_id/:ehdokas.id/aani', function($aanestys_id, $ehdokas_id) {
     AaniController::uusi_aani($aanestys_id, $ehdokas_id);
-}
+});

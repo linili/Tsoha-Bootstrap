@@ -18,7 +18,7 @@
 <a href="https://linili.users.cs.helsinki.fi/tsoha/pelaaja/pelaaja_list" class="btn btn-primary btn-lg">Pelaajat<span class="glyphicon glyphicon-chevron-right"></span></a>
 </p>
 {% endif %}
-{% if !user_logged_in %}
+{% if user_logged_in == null %}
   <div class="page-header">
     <h1>Tervetuloa Äänestämään!</h1>
   </div>

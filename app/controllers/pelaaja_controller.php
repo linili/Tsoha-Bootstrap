@@ -54,7 +54,7 @@ public static function update($id){
     $attributes = array(
         'id' => $id,
         'nimi' => $params['nimi'],
-      'aloitusvuosi' => {{$pelaaja_vanha.aloitusvuosi}},
+      'aloitusvuosi' => $pelaaja_vanha->aloitusvuosi,
       'salasana' => $params['salasana']
     );
     $pelaaja = new Pelaaja($attributes);
@@ -70,7 +70,7 @@ public static function destroy($id){
     self::check_logged_in();
     $pelaaja = new Pelaaja(array('id' => $id));
     $pelaaja->destroy();
-    Redirect::to('/pelaaja_list', array('message' => 'Pelaaja ' . {{self::get_user_logged_in().nimi}} . 'on poistettu!'));
+    Redirect::to('/pelaaja_list', array('message' => 'Pelaaja ' . self::get_user_logged_in()->nimi . 'on poistettu!'));
 }
 }
 

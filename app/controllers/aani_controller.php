@@ -4,7 +4,8 @@ class AaniController extends BaseController{
 
   public static function uusi_aani($aanestys_id, $ehdokas_id) {
      self::check_logged_in();
-     $aanestaja_id = {{user_logged_in.id}};
+     $user_logged_in = self::get_user_logged_in();
+     $aanestaja_id = $user_logged_in->id;
      $aani = new Aani($aanestaja_id, $ehdokas_id, $aanestys_id);
   }
 

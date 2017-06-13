@@ -82,9 +82,9 @@ public static function update($id){
         'id' => $id,
         'nimi' => $params['nimi'],
       'status' => $params[''],
-      'yllapitaja' => $aanestys_ennen->nimi}},
+      'yllapitaja' => $aanestys_ennen->nimi,
       'kuvaus' => $params['kuvaus'],
-      'julkaistu' => $aanestys_ennen->julkaistu}}
+      'julkaistu' => $aanestys_ennen->julkaistu
     );
     
     $aanestys = new Aanestys($attributes);
