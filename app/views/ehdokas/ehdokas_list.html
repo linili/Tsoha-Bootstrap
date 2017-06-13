@@ -6,7 +6,7 @@
 </div>
 {% endif %}
   <h1>Ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
-{% if {{user_logged_in.nimi}} = {{aanestys.yllapitaja}}}
+{% if {{user_logged_in.nimi}} == {{aanestys.yllapitaja}} %}
   <p>
     <a href="{{base.path}}/ehdokas/uusi" class="btn btn-success">Lisää ehdokas</a>
   </p>

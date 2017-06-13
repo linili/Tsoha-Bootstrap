@@ -21,6 +21,8 @@
             <th>Kuvaus</th>
             <th>Julkaistu</th>
             <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
 
@@ -30,11 +32,11 @@
         <tr>
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}">{{aanestys.nimi}}</a></td>
             <td>
-            {% if aanetys.status %}
-            <label class="label label-succes">Käynnissä
-            {% else %}
-            <label class="label label-danger">Äänestys on ohi
-            {% endif %}
+                {% if aanestys.status %}
+                <label class="label label-succes">Käynnissä</label>
+                {% else %}
+                <label class="label label-danger">Äänestys on ohi</label>
+                {% endif %}
             </td>
             <td>{{aanestys.yllapitaja}}</td>
             <td>{{aanestys.kuvaus}}</td>
@@ -43,12 +45,12 @@
             {% if aanestys.status %}
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokkaat">Mene äänestykseen</a></td>
             <!-- jos äänestys on ohi, näytetään seuraavat-->
-             {% else %}
-             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/tulokset">Tulokset</a></td>
-              {% endif %}
-              <!--Jos ylläpitäjä, näytetään seuraavat-->
-               {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}
-            {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}
+            {% else %}
+            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/tulokset">Tulokset</a></td>
+            {% endif %}
+            <!--Jos ylläpitäjä, näytetään seuraavat-->
+            <td><a {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}</a></td>
+            <td><a {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}</a></td>
         </tr>
         {% endfor %}
     </tbody>

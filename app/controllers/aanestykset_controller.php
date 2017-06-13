@@ -70,7 +70,7 @@ class AanestysController extends BaseController{
 public static function edit($id){
   self::check_logged_in();
     $aanestys = Aanestys::etsi($id);
-  self::check_yllapitaja($aanestys);  
+//  self::check_yllapitaja($aanestys);  
     View::make('aanestys/edit.html',array('aanestys' => $aanestys));
 }
 public static function update($id){

@@ -10,7 +10,7 @@ class Ehdokas extends BaseModel{
 
 	public static function kaikki($aanestys_id){
 	$query = DB::connection()->prepare('SELECT * FROM Ehdokas WHERE aanestys_id = :aanestys_id');
-	$query->execute();
+	$query->execute(array('aanestys_id' => $aanestys_id));
 	$rows = $query->fetchAll();
 	$ehdokkaat = array();
 	foreach($rows as $row){
