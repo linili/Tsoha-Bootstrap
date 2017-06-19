@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 {% extends "base.html" %}
 {% block content %}
 {% if message %}
@@ -11,18 +5,17 @@ and open the template in the editor.
     {{message}}
 </div>
 {% endif %}
-{% if user_logged_in %}
 <h1>Pelaaja {{user_logged_in.nimi}}</h1>
-{% endif %}
 <!-- Painikkeet tähän -->
 <p>
-    <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/pelaaja/{{pelaaja.id}}/pelaaja_edit" class="btn btn-default">Muokkaa</a>
+    <button class="btn btn-danger">Poista</button> <a href="{{base_path}}/pelaaja/{{pelaaja.id}}/edit" class="btn btn-default">Muokkaa</a>
 
     <a href="#" class="btn btn-default">Äänestyshistoria</a>
 </p>
 <!-- Tiedot tulee listana tähän -->
 <ul>
     <li><strong>Aloitusvuosi:</strong> {{pelaaja.aloitusvuosi}}</li>
+    <li><strong>Voitetut äänestykset: </strong>tähän voitot</li>
     
 </ul>
 {% endblock %}

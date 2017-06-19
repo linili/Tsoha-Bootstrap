@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
+  <h1>Äänestyksen {{aanestys.nimi}} tulokset</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Ehdokas</th>
+        <th>Aloitusvuosi</th>
+        <th>Ääniä</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    
+      <!-- Listataan ehdokkaat tähän -->
+      {% for ehdokas in ehdokkaat %}
+      {% for pelaaja in pelaajat %}
+      {% if pelaaja.id == ehdokas.pelaaja_id %}
+      <tr>
+      <td>{{pelaaja.nimi}}</td>
+      <td>{{pelaaja.aloitusvuosi}}</td>
+      {% for aani in aanet %}
+      {% if aani.ehdokas_id == ehdokas.id}
+      <td>aanimäärä tähän</td>
+      {% endif %}
+      {% endfor %}
+      
+       
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

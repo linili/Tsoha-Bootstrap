@@ -26,7 +26,7 @@ class BaseController {
     }
 
     public static function check_yllapitaja($aanestys) {
-        if ($aanestys->id != $get_user_logged_in_id) {
+        if ($aanestys->yllapitaja != self::get_user_logged_in_id()) {
             Redirect::to('/aanestys_list', array('message' => 'Sinulla ei ole riittäviä oikeuksia!'));
         }
     }

@@ -36,9 +36,9 @@ class PelaajaController extends BaseController{
     $pelaaja->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
-    Redirect::to('/pelaaja/pelaaja_list' . $pelaaja->id, array('message' => 'Pelaaja on lisätty!'));
-  }else{
-      View::make('pelaaja/uusi.html', array('errors' => $errors, 'attributes' => $attributes));
+  //  Redirect::to('/pelaaja/' . $pelaaja->id, array('message' => 'Pelaaja on lisätty!'));
+ // }else{
+  //    View::make('pelaaja/', array('errors' => $errors, 'attributes' => $attributes));
   }
 }
 
@@ -60,17 +60,17 @@ public static function update($id){
     $pelaaja = new Pelaaja($attributes);
     $errors = $pelaaja->errors();
     if(count($errors) > 0){
-    View::make('pelaaja/pelaaja_edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    View::make('pelaaja/:id/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
         $pelaaja->update();
-        Redirect::to('/pelaaja/' . $pelaaja->id, array('message' => 'Pelaajan tietoja on muokattu!'));
+        Redirect::to('pelaaja/:id', array('message' => 'Pelaajan tietoja on muokattu!'));
     }
 }
 public static function destroy($id){
     self::check_logged_in();
-    $pelaaja = new Pelaaja(array('id' => $id));
+    $pelaaja = Pelaaja::etsi($id);
     $pelaaja->destroy();
-    Redirect::to('/pelaaja_list', array('message' => 'Pelaaja ' . self::get_user_logged_in()->nimi . 'on poistettu!'));
+    Redirect::to('pelaaja/pelaaja_list', array('message' => 'Pelaaja on poistettu!'));
 }
 }
 

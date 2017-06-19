@@ -33,24 +33,34 @@
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}">{{aanestys.nimi}}</a></td>
             <td>
                 {% if aanestys.status %}
-                <label class="label label-succes">Käynnissä</label>
+                <label class="label label-success">Käynnissä</label>
                 {% else %}
                 <label class="label label-danger">Äänestys on ohi</label>
-                {% endif %}
             </td>
-            <td>{{aanestys.yllapitaja}}</td>
+                {% endif %}
+                {% for pelaaja in pelaajat %}
+                {% if pelaaja.id == aanestys.yllapitaja %}
+            <td>{{pelaaja.nimi}}</td>
+                {% endif %}
+                {% endfor %}
             <td>{{aanestys.kuvaus}}</td>
             <td>{{aanestys.julkaistu}}</td>
             <!-- jos äänestys on käynnissä, näytetään seuraavat-->
             {% if aanestys.status %}
-            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokkaat">Mene äänestykseen</a></td>
+            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas_list">Mene äänestykseen</a></td>
             <!-- jos äänestys on ohi, näytetään seuraavat-->
             {% else %}
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/tulokset">Tulokset</a></td>
             {% endif %}
             <!--Jos ylläpitäjä, näytetään seuraavat-->
-            <td><a {{forms.edit_button("#{base_path}/aanestys/#{aanestys.id}/edit")}}</a></td>
-            <td><a {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}</a></td>
+            {% if user_logged_in.id == aanestys.yllapitaja %}
+            <td><a  href="{{base_path}}/aanestys/{{aanestys.id}}/edit">Muokkaa</a></td>
+           <!-- <td><a {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}</a></td> -->
+           <td><a <form method="post" action="{{base_path}}/aanestys/{{aanestys.id}}/destroy" style="display: inline-block;">
+  <button type="submit" class="btn btn-danger">Poista</button>
+</form>
+            </a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

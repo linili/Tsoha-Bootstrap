@@ -4,8 +4,11 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-$routes->get('/rekisterointi', function() {
-    HelloWorldController::rekisterointi();
+$routes->get('/rekisteroityminen', function() {
+    AanestysController::rekisterointi();
+});
+$routes->post('/rekisteroityminen', function(){
+    AanestysController::rekisteroi();
 });
 
 $routes->get('/login', function() {
@@ -41,9 +44,11 @@ $routes->get('/aanestys/:id', function($id) {
 $routes->get('/aanestys', function() {
     AanestysController::index();
 });
+
 $routes->get('/home', function() {
 AanestysController::home();
 });
+
 $routes->get('/', function() {
     AanestysController::home();
 });
@@ -51,9 +56,6 @@ $routes->get('/', function() {
 $routes->post('/aanestys/uusi', function() {
     AanestysController::store();
 });
-// $routes->post('/aanestys/edit', function($id) {
-//    AanestysController::update($id);
-// });
 
 $routes->post('/aanestys/:id/edit', function($id) {
     AanestysController::update($id);
@@ -90,13 +92,13 @@ $routes->post('/pelaaja/:id/destroy', function($id) {
 
 // Ehdokas reitit
 
-$routes->get('/aanestys/:aanestys_id/ehdokkaat', function($aanestys_id) {
+$routes->get('/aanestys/:aanestys_id/ehdokas_list', function($aanestys_id) {
     EhdokasController::index($aanestys_id);
 });
 $routes->get('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::uusi($aanestys_id);
 });
-$routes->post('aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
+$routes->post('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::store($aanestys_id);
 });
 $routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id) {
@@ -105,6 +107,9 @@ $routes->post('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanes
 
 // Aani reitit
 
-$routes->post('aanestys/:aanestys_id/:ehdokas.id/aani', function($aanestys_id, $ehdokas_id) {
+$routes->post('/aanestys/:aanestys_id/:ehdokas_id/aani', function($aanestys_id, $ehdokas_id) {
     AaniController::uusi_aani($aanestys_id, $ehdokas_id);
+});
+$routes->get('/aanestys/:aanestys_id/tulokset', function($aanestys_id) {
+    AaniController::tulokset($aanestys_id);
 });

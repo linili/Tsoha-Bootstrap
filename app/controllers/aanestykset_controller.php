@@ -1,5 +1,29 @@
 <?php
 class AanestysController extends BaseController{
+
+  public static function rekisterointi() {
+    View::make('rekisteroityminen.html');
+  }
+  public static function rekisteroi() {
+    $params = $_POST;
+    if($params['salasana'] == $params['salasana2']) {
+     $attributes = array(
+      'nimi' => $params['nimi'],
+      'aloitusvuosi' => $params['aloitusvuosi'],
+      'salasana' => $params['salasana']
+    );
+
+      $pelaaja =  new Pelaaja($attributes);
+       $errors = $pelaaja->errors();
+    if(count($errors) == 0){
+    $pelaaja->save();
+}
+    // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
+    Redirect::to('/', array('message' => 'Nyt voit kirjautua!'));
+      } else {
+        Redirect::to('/rekisteroityminen', array('message' => 'Salasanat eivät täsmänneet!'));
+      }
+  }
     
    public static function login() {
         View::make('login.html');
@@ -8,7 +32,7 @@ class AanestysController extends BaseController{
       $params = $_POST;
       $pelaaja = Pelaaja::tunnista($params['nimi'], $params['salasana']);
       if(!$pelaaja){
-        VIew::make('login.html', array('error' => 'Väärä nimi tai salasana!', 'nimi' => $params[nimi]));
+        View::make('login.html', array('error' => 'Väärä nimi tai salasana!', 'nimi' => $params[nimi]));
       }else{
         $_SESSION['pelaaja'] = $pelaaja->id;
         Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . $pelaaja->nimi . '!'));
@@ -16,7 +40,7 @@ class AanestysController extends BaseController{
     }
     public static function logout(){
       $_SESSION['pelaaja'] = null;
-      Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+      Redirect::to('/', array('message' => 'Olet kirjautunut ulos!'));
     }
     
     public static function home(){
@@ -26,12 +50,14 @@ class AanestysController extends BaseController{
     public static function index(){
       self::check_logged_in();
         $aanestykset = Aanestys::kaikki();
-        View::make('aanestys/aanestys_list.html', array('aanestykset' => $aanestykset));
+        $pelaajat = Pelaaja::kaikki();
+        View::make('aanestys/aanestys_list.html', array('aanestykset' => $aanestykset, 'pelaajat' => $pelaajat));
     }
     public static function show($id){
       self::check_logged_in();
         $aanestys = Aanestys::etsi($id);
-        View::make('aanestys/aanestys_tiedot.html', array('aanestys' => $aanestys));
+        $pelaajat = Pelaaja::kaikki();
+        View::make('aanestys/aanestys_tiedot.html', array('aanestys' => $aanestys, 'pelaajat' => $pelaajat));
     }
     
     public static function uusi(){
@@ -59,6 +85,8 @@ class AanestysController extends BaseController{
     $errors = $aanestys->errors();
     if(count($errors) == 0){
     $aanestys->save();
+    $aanestys_id = $aanestys->id;
+    EhdokasController::store_kaikki($aanestys_id);
 
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
     Redirect::to('/aanestys/' . $aanestys->id, array('message' => 'Äänestys on lisätty!'));
@@ -78,11 +106,15 @@ public static function update($id){
   $aanestys_ennen = Aanestys::etsi($id);
    self::check_yllapitaja($aanestys_ennen);
     $params = $_POST;
+    $status = TRUE;
+    if($params['status'] == "FALSE") {
+      $status = FALSE;
+    }
     $attributes = array(
         'id' => $id,
         'nimi' => $params['nimi'],
-      'status' => $params[''],
-      'yllapitaja' => $aanestys_ennen->nimi,
+        'status' => $status,
+      'yllapitaja' => $aanestys_ennen->yllapitaja,
       'kuvaus' => $params['kuvaus'],
       'julkaistu' => $aanestys_ennen->julkaistu
     );
@@ -99,7 +131,7 @@ public static function update($id){
 }
 public static function destroy($id){
   self::check_logged_in();
-   $aanestys = Aanestys::etsi($id);
+   $aanestys = new Aanestys(array('id' => $id));
   self::check_yllapitaja($aanestys); 
     $aanestys->destroy();
     Redirect::to('aanestys/aanestys_list', array('message' => 'Aanestys on poistettu!'));

@@ -57,7 +57,7 @@ public static function etsi($id){
     $query->execute;
   }
    public static function update(){
-    $query = DB::connection()->prepare('UPDATE Pelaaja SET nimi = :nimi, aloitusvuosi = :aloitusvuosi, salasana = :salasana) WHERE (id = :id)');
+    $query = DB::connection()->prepare('UPDATE Pelaaja SET nimi = :nimi, aloitusvuosi = :aloitusvuosi, salasana = :salasana WHERE (id = :id)');
     $query->execute(array('nimi' => $this->nimi, 'aloitusvuosi' => $this->aloitusvuosi, 'salasana' => $this->salasana));
   
   }

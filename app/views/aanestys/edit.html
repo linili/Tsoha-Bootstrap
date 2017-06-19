@@ -2,10 +2,10 @@
 {% block content %}
   <h1>Muokkaa äänestystä {{aanestys.nimi}}</h1>
 
-  <form method="post" action="{{base_path}}/aanestys/{{aanestys.id}}/edit">>
+  <form method="post" action="{{base_path}}/aanestys/{{aanestys.id}}/edit">
   <div class="checkbox">
       <label>
-        <input name= "checkbox" type="checkbox">
+        <input name= "status" type="checkbox" value="FALSE">
         Äänestys päättynyt
       </label>
     </div>

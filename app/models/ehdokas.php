@@ -51,7 +51,7 @@ public static function etsi($id){
      $this->id = $row['id'];
   }
    public static function destroy(){
-    $query = DB::connection()->prepare('DELETE * FROM Ehdokas WHERE id = :id AND aanestys_id = :aanestys_id');
+    $query = DB::connection()->prepare('DELETE FROM Ehdokas WHERE id = :id AND aanestys_id = :aanestys_id');
     $query->execute;
   }
 }

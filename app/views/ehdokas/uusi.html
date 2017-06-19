@@ -1,6 +1,6 @@
-<{% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
-{% if {{user_logged_in.nimi}} = aanestys.yllapitaja %}
+{% if user_logged_in.id == aanestys.yllapitaja %}
 <h1>Lisää ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
 
 {% if errors %}
@@ -13,7 +13,7 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{base_path}}/ehdokas/uusi">
+<form method="post" action="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/uusi">
     <div class="form-group">
        <label>Pelaajat</label>
        <select class="form-control" name="ehdokkaat[]" multiple="">

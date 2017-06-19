@@ -5,7 +5,9 @@ class EhdokasController extends BaseController {
     public static function index($aanestys_id) {
         self::check_logged_in();
         $ehdokkaat = Ehdokas::kaikki($aanestys_id);
-        View::make('ehdokas/ehdokas_list.html', array('ehdokkaat' => $ehdokkaat));
+        $aanestys = Aanestys::etsi($aanestys_id);
+        $pelaajat = Pelaaja::kaikki();
+        View::make('ehdokas/ehdokas_list.html', array('ehdokkaat' => $ehdokkaat, 'aanestys' => $aanestys, 'pelaajat' => $pelaajat));
     }
 
     public static function uusi($aanestys_id) {
@@ -29,9 +31,21 @@ class EhdokasController extends BaseController {
         }
 
         // Ohjataan käyttäjä lisäyksen jälkeen aanestyksen esittelysivulle
-        Redirect::to('/aanestys/{{$aanestys_id}}', array('message' => 'Ehdokkaat on lisätty!'));
+        Redirect::to('/aanestys/:aanestys_id', array('message' => 'Ehdokkaat on lisätty!'));
      //   } else{
      //   View::make('aanestys/aanestys_list.html'));
+    }
+
+    public static function store_kaikki($aanestys_id) {
+        self::check_logged_in();
+        $pelaajat = Pelaaja::kaikki();
+        foreach($pelaajat as $pelaaja) {
+            $attributes = array(
+                'pelaaja_id' => $pelaaja->id,
+                'aanestys_id' => $aanestys_id);
+            $ehdokas = new Ehdokas($attributes);
+            $ehdokas->save();
+        }
     }
 
     public static function destroy($id, $aanestys_id) {

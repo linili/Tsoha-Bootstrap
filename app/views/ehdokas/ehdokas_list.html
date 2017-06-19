@@ -6,9 +6,9 @@
 </div>
 {% endif %}
   <h1>Ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
-{% if {{user_logged_in.nimi}} == {{aanestys.yllapitaja}} %}
+ {% if user_logged_in.id == aanestys.yllapitaja %}
   <p>
-    <a href="{{base.path}}/ehdokas/uusi" class="btn btn-success">Lisää ehdokas</a>
+    <a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/uusi" class="btn btn-success">Lisää ehdokas</a>
   </p>
   {% endif %}
 
@@ -18,25 +18,33 @@
         <th>Ehdokas</th>
         <th>Aloitusvuosi</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
+    
       <!-- Listataan ehdokkaat tähän -->
       {% for ehdokas in ehdokkaat %}
+      {% for pelaaja in pelaajat %}
+      {% if pelaaja.id == ehdokas.pelaaja_id %}
       <tr>
-        <td>{{Pelaaja::etsi({{ehdokas.pelaaja_id}}).nimi}}</td>
-        <td>{{Pelaaja::etsi({{ehdokas.pelaaja_id}}).aloitusvuosi}}</td>
-        {% if {{user_logged_in.nimi}} = {{aanestys.yllapitaja}} %}
-         <th><a <form method="post" action ="{{base_path}}/aanestys/{{ehdokas.aanestys_id}}/ehdokas/{{ehdokas.id}}/destroy" style="display: inline-block;">
+      <td>{{pelaaja.nimi}}</td>
+      <td>{{pelaaja.aloitusvuosi}}</td>
+
+      {% endif %}
+      {% endfor %}
+      
+        {% if user_logged_in.id == aanestys.yllapitaja %}
+         <td><a <form method="post" action ="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/{{ehdokas.id}}/destroy" style="display: inline-block;">
                         <button type="submit" class="btn btn-danger">Poista</button>
                     </form>
-                </a></th>
+                </a></td>
                 {% else %}
-                 <th><a <form method="post" action ="{{base.path}}/aanestys/{{ehdokas.aanestys_id}}/{{ehdokas.id}}/aani" style="display: inline-block;">
+                 <td><a <form method="post" action ="{{base.path}}/aanestys/{{aanestys.id}}/{{ehdokas.id}}/aani" style="display: inline-block;">
                         <button type="submit" class="btn btn-danger">Äänestä</button>
                     </form>
-                </a></th>
+                </a></td>
                 {% endif %}
       </tr>
       {% endfor %}

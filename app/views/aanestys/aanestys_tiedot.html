@@ -22,13 +22,17 @@
 </p>
 <!-- Tiedot tulee listana tähän -->
 <ul>
-    <li><strong>Ylläpitäjä:</strong>tähän yllapitaja</li>
+{% for pelaaja in pelaajat %}
+                {% if pelaaja.id == aanestys.yllapitaja %}
+           <li><strong>Ylläpitäjä: </strong>{{pelaaja.nimi}}</li>       {% endif %}
+{% endfor %}
+
     {% if aanestys.status %}
-    <li><strong>Status:</strong>Äänestys käynnissä</li>
+    <li><strong>Status: </strong>Äänestys käynnissä</li>
     {% else %}
-     <li><strong>Status:</strong>Äänestys on päättynyt</li>
+     <li><strong>Status: </strong>Äänestys on päättynyt</li>
      {% endif %}
-    <li><strong>Lisäyspäivä:</strong> {{aanestys.julkaistu}}</li>
+    <li><strong>Lisäyspäivä: </strong> {{aanestys.julkaistu}}</li>
 </ul>
 <!-- Kuvaus tulee tähän -->
 <p>
