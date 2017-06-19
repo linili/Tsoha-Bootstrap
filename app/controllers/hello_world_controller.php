@@ -16,11 +16,11 @@ require 'app/models/aanestys.php';
       // Testaa koodiasi täällä
         // Muista sisällyttää malliluokka require-komennolla!
 
-    $skyrim = Pelaaja::etsi(1);
-    $aanestykset = Pelaaja::kaikki();
+    $ehdokkaat = Ehdokas::kaikki(1);
+    $ehdokas = Ehdokas::etsi(1);
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
-    Kint::dump($aanestykset);
-    Kint::dump($skyrim);
+    Kint::dump($ehdokas);
+    Kint::dump($ehdokkaat);
   
 
       //  View::make('helloworld.html');

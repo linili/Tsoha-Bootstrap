@@ -37,6 +37,10 @@ $routes->get('/aanestys/:id/edit', function($id) {
     AanestysController::edit($id);
 });
 
+$routes->get('/aanestys/:id/destroy', function($id) {
+    AanestysController::destroy($id);
+});
+
 $routes->get('/aanestys/:id', function($id) {
     AanestysController::show($id);
 });
@@ -60,16 +64,10 @@ $routes->post('/aanestys/uusi', function() {
 $routes->post('/aanestys/:id/edit', function($id) {
     AanestysController::update($id);
 });
-$routes->post('/aanestys/:id/destroy', function($id) {
-    AanestysController::destroy($id);
-});
+
 
 
 // Pelaaja reitit
-
-$routes->get('/pelaaja/:id/edit', function($id) {
-    PelaajaController::edit($id);
-});
 
 $routes->get('/pelaaja/pelaaja_list', function() {
     PelaajaController::index();
@@ -77,6 +75,10 @@ $routes->get('/pelaaja/pelaaja_list', function() {
 
 $routes->get('/pelaajat', function() {
     PelaajaController::index();
+});
+
+$routes->get('/pelaaja/:id/edit', function($id) {
+    PelaajaController::edit($id);
 });
 
 $routes->get('/pelaaja/:id', function($id) {

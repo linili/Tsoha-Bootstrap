@@ -37,12 +37,12 @@
                 {% else %}
                 <label class="label label-danger">Äänestys on ohi</label>
             </td>
-                {% endif %}
-                {% for pelaaja in pelaajat %}
-                {% if pelaaja.id == aanestys.yllapitaja %}
+            {% endif %}
+            {% for pelaaja in pelaajat %}
+            {% if pelaaja.id == aanestys.yllapitaja %}
             <td>{{pelaaja.nimi}}</td>
-                {% endif %}
-                {% endfor %}
+            {% endif %}
+            {% endfor %}
             <td>{{aanestys.kuvaus}}</td>
             <td>{{aanestys.julkaistu}}</td>
             <!-- jos äänestys on käynnissä, näytetään seuraavat-->
@@ -55,14 +55,11 @@
             <!--Jos ylläpitäjä, näytetään seuraavat-->
             {% if user_logged_in.id == aanestys.yllapitaja %}
             <td><a  href="{{base_path}}/aanestys/{{aanestys.id}}/edit">Muokkaa</a></td>
-           <!-- <td><a {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}</a></td> -->
-           <td><a <form method="post" action="{{base_path}}/aanestys/{{aanestys.id}}/destroy" style="display: inline-block;">
-  <button type="submit" class="btn btn-danger">Poista</button>
-</form>
-            </a></td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </tbody>
+            <!-- <td><a {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}</a></td> -->
+            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/destroy" class="btn btn-danger">Poista</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</tbody>
 </table>
 {% endblock %}

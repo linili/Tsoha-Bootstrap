@@ -26,6 +26,7 @@
       <tr>
       <td>{{pelaaja.nimi}}</td>
       <td>{{pelaaja.aloitusvuosi}}</td>
+      {% endif %}
       {% for aani in aanet %}
       {% if aani.ehdokas_id == ehdokas.id}
       <td>aanimäärä tähän</td>
@@ -34,6 +35,7 @@
       
        
       </tr>
+      {% endfor %}
       {% endfor %}
     </tbody>
   </table>

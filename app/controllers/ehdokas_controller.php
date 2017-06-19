@@ -21,17 +21,20 @@ class EhdokasController extends BaseController {
         self::check_logged_in();
         $params = $_POST;
         $pelaaja_idt = $params['ehdokkaat'];
+        $testi = array();
         foreach ($pelaaja_idt as $pelaaja_id) {
-            $attributes = array(
+            $testi[] = $pelaaja_id;
+ /*           $attributes = array(
                 'aanestys_id' => $aanestys_id,
                 'pelaaja_id' => $pelaaja_id
             );
             $ehdokas = new Ehdokas($attributes);
             $ehdokas->save();
-        }
+ */       }
+ Kint::dump($testi);
 
         // Ohjataan käyttäjä lisäyksen jälkeen aanestyksen esittelysivulle
-        Redirect::to('/aanestys/:aanestys_id', array('message' => 'Ehdokkaat on lisätty!'));
+    //    Redirect::to('/aanestys/'. $aanestys_id, array('message' => 'Ehdokkaat on lisätty!'));
      //   } else{
      //   View::make('aanestys/aanestys_list.html'));
     }
@@ -52,7 +55,7 @@ class EhdokasController extends BaseController {
         self::check_logged_in();
         $ehdokas = new Ehdokas(array('id' => $id, 'aanestys_id' => $aanestys_id));
         $ehdokas->destroy();
-        Redirect::to('aanestys/:id/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));
+        Redirect::to('aanestys/'.$aanestys_id. '/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));
     }
 
 }

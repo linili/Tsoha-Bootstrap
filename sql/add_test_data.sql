@@ -2,9 +2,9 @@ INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES ('Matti Mainio', '2016
 INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES ('Minna Mainio', '2015', 'asdf');
 INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES ('Mauno', '2017', 'Mauno');
 INSERT INTO Pelaaja (nimi, aloitusvuosi, salasana) VALUES ('Minea', '2017', 'Minea');
-INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuoden pelaaja', TRUE, 1, 'vuoden parhain pelaaja', '2016-11-12');
-INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuoden tyyli', TRUE, 2, 'vuoden tyylikkäin pelitapa', '2015-11-12');
-INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuoden tulokas', FALSE, 1, 'vuoden tulokas', '2017-11-12');
+INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuoden pelaaja', 'true', 1, 'vuoden parhain pelaaja', '2016-11-12');
+INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuoden tyyli', 'true', 2, 'vuoden tyylikkäin pelitapa', '2015-11-12');
+INSERT INTO Aanestys (nimi, status, yllapitaja, kuvaus, julkaistu) VALUES ('Vuoden tulokas', 'false', 1, 'vuoden tulokas', '2017-11-12');
 INSERT INTO Ehdokas (pelaaja_id, aanestys_id) VALUES (1,1);
 INSERT INTO Ehdokas (pelaaja_id, aanestys_id) VALUES (2,1);
 INSERT INTO Ehdokas (pelaaja_id, aanestys_id) VALUES (3,1);

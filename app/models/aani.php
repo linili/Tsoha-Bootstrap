@@ -10,7 +10,7 @@ class Aani extends BaseModel{
 
 	public static function ehdokkaan_aanet($ehdokas_id, $aanestys_id){
 	$query = DB::connection()->prepare('SELECT * FROM Aani WHERE ehdokas_id = :ehdokas_id AND aanestys_id = :aanestys_id');
-	$query->execute();
+	$query->execute(array('ehdokas_id' => $ehdokas_id, 'aanestys_id' => $aanestys_id));
 	$rows = $query->fetchAll();
 	$aanet = array();
 	foreach($rows as $row){
@@ -26,7 +26,7 @@ class Aani extends BaseModel{
 
   public static function kaikki($aanestys_id){
   $query = DB::connection()->prepare('SELECT * FROM Aani WHERE aanestys_id = :aanestys_id');
-  $query->execute();
+  $query->execute(array('aanestys_id' => $aanestys_id));
   $rows = $query->fetchAll();
   $aanet = array();
   foreach($rows as $row){

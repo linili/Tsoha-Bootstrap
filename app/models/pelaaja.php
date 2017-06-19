@@ -1,7 +1,7 @@
 <?php
 
 class Pelaaja extends BaseModel{
-	public $id, $nimi, $aloitusvuosi, $salasana;
+	public $id, $nimi, $aloitusvuosi, $salasana, $voitot;
         
 	public function __construct($attributes){
 	parent::__construct($attributes);
@@ -52,11 +52,11 @@ public static function etsi($id){
     // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
      $this->id = $row['id'];
   }
-   public static function destroy(){
+   public function destroy(){
     $query = DB::connection()->prepare('DELETE * FROM Pelaaja WHERE id = :id');
     $query->execute;
   }
-   public static function update(){
+   public function update(){
     $query = DB::connection()->prepare('UPDATE Pelaaja SET nimi = :nimi, aloitusvuosi = :aloitusvuosi, salasana = :salasana WHERE (id = :id)');
     $query->execute(array('nimi' => $this->nimi, 'aloitusvuosi' => $this->aloitusvuosi, 'salasana' => $this->salasana));
   
