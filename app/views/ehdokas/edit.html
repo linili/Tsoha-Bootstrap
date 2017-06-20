@@ -36,10 +36,8 @@
       {% endfor %}
       
         {% if user_logged_in.id == aanestys.yllapitaja %}
-         <td><a <form method="post" action ="{{base_path}}/aanestys/{{ehdokas.aanestys_id}}/ehdokas/{{ehdokas.id}}/destroy" style="display: inline-block;">
-                        <button type="submit" class="btn btn-danger">Poista</button>
-                    </form>
-                </a></td>
+         <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/{{ehdokas.id}}/destroy" class="btn btn-danger">Poista</a></td>
+               
                 {% else %}
                  <td><a <form method="post" action ="{{base.path}}/aanestys/{{ehdokas.aanestys_id}}/{{ehdokas.id}}/aani" style="display: inline-block;">
                         <button type="submit" class="btn btn-danger">Äänestä</button>

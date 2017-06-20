@@ -18,7 +18,7 @@
        <label>Pelaajat</label>
        <select class="form-control" name="ehdokkaat[]" multiple="">
        {% for pelaaja in pelaajat %}
-       <option value="{{pelaaja_id}}">{{pelaaja.nimi}}</option>
+       <option value="{{pelaaja.id}}">{{pelaaja.nimi}}</option>
        {% endfor %}
        </select> 
         <button type="submit" class="btn btn-primary">Lisää ehdokkaat</button>

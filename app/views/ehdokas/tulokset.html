@@ -21,21 +21,21 @@
     
       <!-- Listataan ehdokkaat tähän -->
       {% for ehdokas in ehdokkaat %}
-      {% for pelaaja in pelaajat %}
-      {% if pelaaja.id == ehdokas.pelaaja_id %}
-      <tr>
-      <td>{{pelaaja.nimi}}</td>
-      <td>{{pelaaja.aloitusvuosi}}</td>
-      {% endif %}
-      {% for aani in aanet %}
-      {% if aani.ehdokas_id == ehdokas.id}
-      <td>aanimäärä tähän</td>
-      {% endif %}
-      {% endfor %}
-      
-       
-      </tr>
-      {% endfor %}
+        {% for pelaaja in pelaajat %}
+          {% if pelaaja.id == ehdokas.pelaaja_id %}
+          <tr>
+          <td>{{pelaaja.nimi}}</td>
+          <td>{{pelaaja.aloitusvuosi}}</td>
+          
+          {% for aani in aanet %}
+          <td>{{aani}}</td>
+        <!--    {% if aani.ehdokas_id == ehdokas.id %}
+            <td>aanimäärä tähän</td>
+            {% endif %} -->
+          {% endfor %}
+          {% endif %}
+          </tr>
+        {% endfor %}
       {% endfor %}
     </tbody>
   </table>

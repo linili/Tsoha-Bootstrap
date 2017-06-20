@@ -83,8 +83,6 @@ class AanestysController extends BaseController {
             'kuvaus' => $params['kuvaus'],
             'julkaistu' => $params['julkaistu']
         );
-
-        // Kint::dump($params);
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $aanestys = new Aanestys($attributes);
         $errors = $aanestys->errors();
@@ -143,7 +141,6 @@ class AanestysController extends BaseController {
         $aanestys->destroy();
         Redirect::to('/aanestys_list', array('message' => 'Aanestys on poistettu!'));
     }
-
 }
 
 /* 

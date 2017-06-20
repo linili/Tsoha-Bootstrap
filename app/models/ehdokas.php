@@ -2,11 +2,11 @@
 
 class Ehdokas extends BaseModel {
 
-    public $id, $pelaaja_id, $aanestys_id, $aanet, $ehdokas_nimi;
+    public $id, $pelaaja_id, $aanestys_id, $aanet;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi');
+        $this->validators = array('validate_onko_olemassa');
     }
 
     public static function kaikki($aanestys_id) {
@@ -60,5 +60,7 @@ class Ehdokas extends BaseModel {
         $query = DB::connection()->prepare('DELETE FROM Ehdokas WHERE id = :id AND aanestys_id = :aanestys_id');
         $query->execute(array('id' => $this->id, 'aanestys_id' => $this.aanestys_id));
     }
+    
+     
 
 }

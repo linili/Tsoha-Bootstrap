@@ -5,49 +5,44 @@
     {{message}}
 </div>
 {% endif %}
-  <h1>Ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
- {% if user_logged_in.id == aanestys.yllapitaja %}
-  <p>
+<h1>Ehdokkaat äänestykseen {{aanestys.nimi}}</h1>
+{% if user_logged_in.id == aanestys.yllapitaja %}
+<p>
     <a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/uusi" class="btn btn-success">Lisää ehdokas</a>
-  </p>
-  {% endif %}
+</p>
+{% endif %}
 
-  <table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">
     <thead>
-      <tr>
-        <th>Ehdokas</th>
-        <th>Aloitusvuosi</th>
-        <th></th>
-        <th></th>
-      </tr>
+        <tr>
+            <th>Ehdokas</th>
+            <th>Aloitusvuosi</th>
+            <th></th>
+            <th></th>
+        </tr>
     </thead>
 
     <tbody>
-    
-      <!-- Listataan ehdokkaat tähän -->
-      {% for ehdokas in ehdokkaat %}
-      {% for pelaaja in pelaajat %}
-      {% if pelaaja.id == ehdokas.pelaaja_id %}
-      <tr>
-      <td>{{pelaaja.nimi}}</td>
-      <td>{{pelaaja.aloitusvuosi}}</td>
 
-      {% endif %}
-      {% endfor %}
-      
-        {% if user_logged_in.id == aanestys.yllapitaja %}
-         <td><a <form method="post" action ="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/{{ehdokas.id}}/destroy" style="display: inline-block;">
-                        <button type="submit" class="btn btn-danger">Poista</button>
-                    </form>
-                </a></td>
-                {% else %}
-                 <td><a <form method="post" action ="{{base.path}}/aanestys/{{aanestys.id}}/{{ehdokas.id}}/aani" style="display: inline-block;">
-                        <button type="submit" class="btn btn-danger">Äänestä</button>
-                    </form>
-                </a></td>
-                {% endif %}
-      </tr>
-      {% endfor %}
+        <!-- Listataan ehdokkaat tähän -->
+        {% for ehdokas in ehdokkaat %}
+        {% for pelaaja in pelaajat %}
+        {% if pelaaja.id == ehdokas.pelaaja_id %}
+        <tr>
+            <td>{{pelaaja.nimi}}</td>
+            <td>{{pelaaja.aloitusvuosi}}</td>
+
+            {% endif %}
+            {% endfor %}
+
+            {% if user_logged_in.id == aanestys.yllapitaja %}
+            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/{{ehdokas.id}}/destroy" class="btn btn-danger">Poista</a></td>
+            {% else %}
+            <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/{{ehdokas.id}}/aani" class="btn btn-danger">Äänestä</a></td>
+
+            {% endif %}
+        </tr>
+        {% endfor %}
     </tbody>
-  </table>
+</table>
 {% endblock %}
