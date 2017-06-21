@@ -56,9 +56,9 @@ class Ehdokas extends BaseModel {
     public function destroy() {
 
         $query = DB::connection()->prepare('DELETE FROM Aani WHERE ehdokas_id = :id AND aanestys_id = :aanestys_id');
-        $query->execute(array('id' => $this->id, 'aanestys_id' => $this.aanestys_id));
+        $query->execute(array('id' => $this->id, 'aanestys_id' => $this->aanestys_id));
         $query = DB::connection()->prepare('DELETE FROM Ehdokas WHERE id = :id AND aanestys_id = :aanestys_id');
-        $query->execute(array('id' => $this->id, 'aanestys_id' => $this.aanestys_id));
+        $query->execute(array('id' => $this->id, 'aanestys_id' => $this->aanestys_id));
     }
     
      public function validate_onko_olemassa() {
