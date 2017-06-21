@@ -19,9 +19,10 @@ class AanestysController extends BaseController {
             $errors = $pelaaja->errors();
             if (count($errors) == 0) {
                 $pelaaja->save();
-            }
-            // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
+                 // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
             Redirect::to('/', array('message' => 'Nyt voit kirjautua!'));
+            }
+Kint::dump($errors);
         } else {
             Redirect::to('/rekisteroityminen', array('message' => 'Salasanat eivät täsmänneet!'));
         }
@@ -35,7 +36,7 @@ class AanestysController extends BaseController {
         $params = $_POST;
         $pelaaja = Pelaaja::tunnista($params['nimi'], $params['salasana']);
         if (!$pelaaja) {
-            View::make('login.html', array('error' => 'Väärä nimi tai salasana!', 'nimi' => $params[nimi]));
+            View::make('login.html', array('error' => 'Väärä nimi tai salasana!', 'nimi' => $params['nimi']));
         } else {
             $_SESSION['pelaaja'] = $pelaaja->id;
             Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . $pelaaja->nimi . '!'));
@@ -81,7 +82,7 @@ class AanestysController extends BaseController {
             'status' => TRUE,
             'yllapitaja' => $user_logged_in->id,
             'kuvaus' => $params['kuvaus'],
-            'julkaistu' =>  date("Y/m/d")
+            'julkaistu' => date("Y/m/d")
         );
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $aanestys = new Aanestys($attributes);
@@ -101,12 +102,12 @@ class AanestysController extends BaseController {
     public static function edit($id) {
         self::check_logged_in();
         $aanestys = Aanestys::etsi($id);
-  self::check_yllapitaja($aanestys);
-    if ($aanestys->status) {
-        View::make('aanestys/edit.html', array('aanestys' => $aanestys));
-    } else {
-        Redirect::to('/aanestys_list',array('message' => 'Aanestystä ei voi enää muokata!'));   
-    }
+        self::check_yllapitaja($aanestys);
+        if ($aanestys->status) {
+            View::make('aanestys/edit.html', array('aanestys' => $aanestys));
+        } else {
+            Redirect::to('/aanestys_list', array('message' => 'Aanestystä ei voi enää muokata!'));
+        }
     }
 
     public static function update($id) {
@@ -145,6 +146,7 @@ class AanestysController extends BaseController {
         $aanestys->destroy();
         Redirect::to('/aanestys_list', array('message' => 'Aanestys on poistettu!'));
     }
+
 }
 
 /* 

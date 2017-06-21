@@ -2,7 +2,7 @@
 CREATE TABLE Pelaaja(
 id SERIAL PRIMARY KEY,
 nimi varchar(30) NOT NULL,
-aloitusvuosi varchar(4),
+aloitusvuosi INTEGER,
 salasana varchar(10) NOT NULL
 );
 

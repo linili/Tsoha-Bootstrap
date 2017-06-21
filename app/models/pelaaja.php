@@ -49,8 +49,8 @@ class Pelaaja extends BaseModel {
         $query->execute(array('nimi' => $this->nimi, 'aloitusvuosi' => $this->aloitusvuosi, 'salasana' => $this->salasana));
         // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
         $row = $query->fetch();
-        // Kint::trace();
-        // Kint::dump($row);
+         Kint::trace();
+         Kint::dump($row);
         // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
         $this->id = $row['id'];
     }
@@ -98,14 +98,12 @@ class Pelaaja extends BaseModel {
         if ($this->aloitusvuosi == '' || $this->aloitusvuosi == null) {
             $errors[] = 'Aseta aloitusvuosi!';
         }
-        if (strlen($this->salasana) != 4) {
-            $errors[] = 'Syötä aloitusvuosi muodossa "xxxx" !';
-        }
-        if (strlen($this->salasana) < 2005) {
+
+        if ($this->aloitusvuosi < 2005) {
             $errors[] = 'Aloitusvuosi ei kelpaa! (Joukkue perustettiin vuonna 2005)';
         }
 
-        if (strlen($this->salasana) > date("Y")) {
+        if ($this->aloitusvuosi > date("Y")) {
             $errors[] = 'Aloitusvuosi ei kelpaa!';
         }
 
