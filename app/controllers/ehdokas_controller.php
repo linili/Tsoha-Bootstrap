@@ -21,17 +21,21 @@ class EhdokasController extends BaseController {
         self::check_logged_in();
         $params = $_POST;
         $pelaaja_idt = $params['ehdokkaat'];
-        $testi = array();
         foreach ($pelaaja_idt as $pelaaja_id) {
             $attributes = array(
                 'aanestys_id' => $aanestys_id,
                 'pelaaja_id' => $pelaaja_id
             );
             $ehdokas = new Ehdokas($attributes);
-            $ehdokas->save();
+            $errors = $ehdokas->errors();
+            if (count($errors) == 0) {
+
+                $ehdokas->save();
+            }
         }
-        // Ohjataan käyttäjä lisäyksen jälkeen aanestyksen esittelysivulle
         Redirect::to('/aanestys/' . $aanestys_id, array('message' => 'Ehdokkaat on lisätty!'));
+
+// Ohjataan käyttäjä lisäyksen jälkeen aanestyksen esittelysivulle
     }
 
     public static function store_kaikki($aanestys_id) {
@@ -46,9 +50,9 @@ class EhdokasController extends BaseController {
         }
     }
 
-    public static function destroy($id, $aanestys_id) {
+    public static function destroy($ehdokas_id, $aanestys_id) {
         self::check_logged_in();
-        $ehdokas = Ehdokas::etsi($id);
+        $ehdokas = Ehdokas::etsi($ehdokas_id);
         $ehdokas->destroy();
         Redirect::to('aanestys/' . $aanestys_id . '/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));
     }

@@ -36,12 +36,12 @@
                 <label class="label label-success">Käynnissä</label>
                 {% else %}
                 <label class="label label-danger">Äänestys on ohi</label>
-            </td>
-            {% endif %}
+                </td>
+                {% endif %}
             {% for pelaaja in pelaajat %}
-            {% if pelaaja.id == aanestys.yllapitaja %}
-            <td>{{pelaaja.nimi}}</td>
-            {% endif %}
+              {% if pelaaja.id == aanestys.yllapitaja %}
+              <td>{{pelaaja.nimi}}</td>
+              {% endif %}
             {% endfor %}
             <td>{{aanestys.kuvaus}}</td>
             <td>{{aanestys.julkaistu}}</td>
@@ -54,12 +54,13 @@
             {% endif %}
             <!--Jos ylläpitäjä, näytetään seuraavat-->
             {% if user_logged_in.id == aanestys.yllapitaja %}
-            <td><a  href="{{base_path}}/aanestys/{{aanestys.id}}/edit">Muokkaa</a></td>
-            <!-- <td><a {{forms.destroy_button("#{base_path}/aanestys/#{aanestys.id}/destroy")}}</a></td> -->
+              {% if aanestys.status %}
+              <td><a  href="{{base_path}}/aanestys/{{aanestys.id}}/edit">Muokkaa</a></td>
+              {% endif %}
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/destroy" class="btn btn-danger">Poista</a></td>
-        {% endif %}
-    </tr>
-    {% endfor %}
-</tbody>
+            {% endif %}
+        </tr>
+           {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

@@ -17,9 +17,8 @@ class AaniController extends BaseController {
             $aani->save();
             Redirect::to('/aanestys_list', array('message' => 'Äänesi on rekisteröity!'));
         } else {
-         
+            Redirect::to('/aanestys_list', array('message' => 'Olet jo äänestänyt. Valitse joku toinen äänestys!'));
         }
-       
     }
 
     public static function ehdokkaan_aanet($aanestys_id, $ehdokas_id) {
@@ -29,15 +28,14 @@ class AaniController extends BaseController {
     public static function tulokset($aanestys_id) {
         $aanestys = Aanestys::etsi($aanestys_id);
         $ehdokkaat = Ehdokas::kaikki($aanestys_id);
-        
+
         $pelaajat = Pelaaja::kaikki();
         $aanet = Aani::kaikki($aanestys_id);
         $aanten_maara = array();
         foreach ($ehdokkaat as $ehdokas) {
             $aanten_maara[] = count(aani::ehdokkaan_aanet($ehdokas->id, $aanestys_id));
         }
-        Kint::dump($aanten_maara);
-       View::make('ehdokas/tulokset.html', array('aanestys' => $aanestys, 'ehdokkaat' => $ehdokkaat, 'pelaajat' => $pelaajat, 'aanet' => $aanten_maara));
+        View::make('ehdokas/tulokset.html', array('aanestys' => $aanestys, 'ehdokkaat' => $ehdokkaat, 'pelaajat' => $pelaajat, 'aanet' => $aanten_maara));
     }
 
     /*  public static function

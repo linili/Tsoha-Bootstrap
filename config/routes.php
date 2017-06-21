@@ -7,17 +7,17 @@ $routes->get('/hiekkalaatikko', function() {
 $routes->get('/rekisteroityminen', function() {
     AanestysController::rekisterointi();
 });
-$routes->post('/rekisteroityminen', function(){
+$routes->post('/rekisteroityminen', function() {
     AanestysController::rekisteroi();
 });
 
 $routes->get('/login', function() {
     AanestysController::login();
 });
-$routes->post('/login', function(){
+$routes->post('/login', function() {
     AanestysController::handle_login();
 });
-$routes->post('/logout', function(){
+$routes->post('/logout', function() {
     AanestysController::logout();
 });
 
@@ -50,7 +50,7 @@ $routes->get('/aanestys', function() {
 });
 
 $routes->get('/home', function() {
-AanestysController::home();
+    AanestysController::home();
 });
 
 $routes->get('/', function() {
@@ -81,16 +81,20 @@ $routes->get('/pelaaja/:id/edit', function($id) {
     PelaajaController::edit($id);
 });
 
-$routes->get('/pelaaja/:id', function($id) {
-    PelaajaController::show($id);
+$routes->get('/pelaaja/:id/destroy', function($id) {
+    PelaajaController::destroy($id);
 });
 
 $routes->post('/pelaaja/:id/edit', function($id) {
     PelaajaController::update($id);
 });
-$routes->post('/pelaaja/:id/destroy', function($id) {
-    PelaajaController::destroy($id);
+
+$routes->get('/pelaaja/:id', function($id) {
+    PelaajaController::show($id);
 });
+
+
+
 
 // Ehdokas reitit
 
@@ -103,8 +107,8 @@ $routes->get('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
 $routes->post('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::store($aanestys_id);
 });
-$routes->get('/aanestys/:aanestys_id/ehdokas/:id/destroy', function($id, $aanestys_id) {
-    EhdokasController::destroy($id, $aanestys_id);
+$routes->get('/aanestys/:aanestys_id/ehdokas/:ehdokas_id/destroy', function($ehdokas_id, $aanestys_id) {
+    EhdokasController::destroy($ehdokas_id, $aanestys_id);
 });
 
 // Aani reitit

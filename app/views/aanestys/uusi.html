@@ -5,9 +5,9 @@
 {% if errors %}
 <div class="alert alert-danger">
     <ul>
-    {% for error in errors %}
-    <li>{{error}}</li>
-    {% endfor %}
+        {% for error in errors %}
+        <li>{{error}}</li>
+        {% endfor %}
     </ul>
 </div>
 {% endif %}
@@ -20,10 +20,6 @@
     <div class="form-group">
         <label class="control-label">Kuvaus</label>
         <textarea name="kuvaus" class="form-control">{{attributes.kuvaus}}</textarea>
-    </div>
-    <div class="form-group">
-        <label class="control-label">Päivämäärä(pp.kk.vvvv)</label>
-        <input name="julkaistu" class="form-control" value="{{attributes.julkaistu}}" type="text">
     </div>
 
     <div class="form-group">

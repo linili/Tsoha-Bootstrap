@@ -2,11 +2,11 @@
 
 class Aanestys extends BaseModel {
 
-    public $id, $nimi, $status, $yllapitaja, $yllapitaja_nimi, $kuvaus, $julkaistu, $ehdokkaat;
+    public $id, $nimi, $status, $yllapitaja, $kuvaus, $julkaistu;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validate_nimi', 'validate_status', 'validate_julkaistu');
+        $this->validators = array('validate_nimi', 'validate_kuvaus');
     }
 
     public static function kaikki() {
@@ -81,16 +81,17 @@ class Aanestys extends BaseModel {
         if (strlen($this->nimi) < 3) {
             $errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
         }
+        if (strlen($this->nimi) > 30) {
+            $errors[] = 'Nimen pituuden tulee olla enintään 30 merkkiä!';
+        }
         return $errors;
     }
-
-    public function validate_status() {
+    
+    public function validate_kuvaus() {
         $errors = array();
-        return $errors;
-    }
-
-    public function validate_julkaistu() {
-        $errors = array();
+         if (strlen($this->kuvaus) > 400) {
+            $errors[] = 'Kuvaus tulee olla enintään 400 merkkiä!';
+        }
         return $errors;
     }
 

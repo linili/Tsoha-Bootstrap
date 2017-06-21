@@ -81,7 +81,7 @@ class AanestysController extends BaseController {
             'status' => TRUE,
             'yllapitaja' => $user_logged_in->id,
             'kuvaus' => $params['kuvaus'],
-            'julkaistu' => $params['julkaistu']
+            'julkaistu' =>  date("Y/m/d")
         );
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
         $aanestys = new Aanestys($attributes);
@@ -101,8 +101,12 @@ class AanestysController extends BaseController {
     public static function edit($id) {
         self::check_logged_in();
         $aanestys = Aanestys::etsi($id);
-//  self::check_yllapitaja($aanestys);  
+  self::check_yllapitaja($aanestys);
+    if ($aanestys->status) {
         View::make('aanestys/edit.html', array('aanestys' => $aanestys));
+    } else {
+        Redirect::to('/aanestys_list',array('message' => 'Aanestystä ei voi enää muokata!'));   
+    }
     }
 
     public static function update($id) {

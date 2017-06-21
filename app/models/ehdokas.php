@@ -2,7 +2,7 @@
 
 class Ehdokas extends BaseModel {
 
-    public $id, $pelaaja_id, $aanestys_id, $aanet;
+    public $id, $pelaaja_id, $aanestys_id;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -61,6 +61,19 @@ class Ehdokas extends BaseModel {
         $query->execute(array('id' => $this->id, 'aanestys_id' => $this.aanestys_id));
     }
     
+     public function validate_onko_olemassa() {
+        $errors = array();
+        
+         $query = DB::connection()->prepare('SELECT * FROM Ehdokas WHERE aanestys_id = :aanestys_id AND pelaaja_id = :pelaaja_id LIMIT 1');
+        $query->execute(array('aanestys_id' => $this->aanestys_id, 'pelaaja_id' => $this->pelaaja_id));
+        $row = $query->fetch();
+        
+        if ($row) {
+            $errors[] = 'Ehdokas on jo lisätty!';
+        }
+        
+        return $errors;
+    }
      
 
 }

@@ -3,14 +3,14 @@
 <h1>Muokkaa pelaajan {{user_logged_in.nimi}} tietoja</h1>
 
 
-<form method="post" action="{{base_path}}/pelaaja/{{pelaaja_id}}/edit">>
+<form method="post" action="{{base_path}}/pelaaja/{{pelaaja_id}}/edit">
     <div class="form-group">
         <label>Nimi</label>
         <input name="nimi" class="form-control" value="{{pelaaja.nimi}}" type="text">
     </div>
     <div class="form-group">
         <label>Salasana</label>
-        <input name="salasana" type="password" class="form-control" value="{{pelaaja.salasana}}">
+        <input name="salasana" class="form-control" value="{{pelaaja.salasana}}" type="password">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Tallenna</button>
