@@ -33,7 +33,7 @@ class AaniController extends BaseController {
         $aanet = Aani::kaikki($aanestys_id);
         $aanten_maara = array();
         foreach ($ehdokkaat as $ehdokas) {
-            $aanten_maara[] = count(aani::ehdokkaan_aanet($ehdokas->id, $aanestys_id));
+            $aanten_maara[] = aani::ehdokkaan_aanet($ehdokas->id, $aanestys_id);
         }
         View::make('ehdokas/tulokset.html', array('aanestys' => $aanestys, 'ehdokkaat' => $ehdokkaat, 'pelaajat' => $pelaajat, 'aanet' => $aanten_maara));
     }
