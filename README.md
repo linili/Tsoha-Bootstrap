@@ -4,19 +4,17 @@ Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://linili.users.cs.helsinki.fi/tsoha/)
 * [Linkki dokumentaatiooni](https://github.com/linili/Tsoha-Bootstrap/blob/master/doc/Dokumentaatio.pdf)
-* [Linkki kirjautumissivulle](http://linili.users.cs.helsinki.fi/tsoha/login)
-* [Linkki äänestyslistaan](http://linili.users.cs.helsinki.fi/tsoha/aanestys_list)
-* [Linkki äänestyksen muokkaukseen](http://linili.users.cs.helsinki.fi/tsoha/aanestys/1/edit)
-* [Linkki ehdokaslistaan](http://linili.users.cs.helsinki.fi/tsoha/ehdokas_list)
-* [Linkki äänestyksen tietoihin](http://linili.users.cs.helsinki.fi/tsoha/aanestys/1/aanestys_tiedot)
+
 
 ## Työn aihe
 
-Äänestys. Pelaajat rekisteröityvät palveluun. Sen jälkeen he kirjautuvat palveluun ja valitsevat äänestyslistasta mihin äänestykseen haluavat ottaa osaa. Jokainen voi äänestää yhdessä äänestyksessä vain kerran. Äänestyksen ylläpitäjä syöttää kategoriat, joihin kaikki pelaajat ovat ehdolla. Poikkeuksena on vuoden tulokas kategoria, johon on ehdolla vain ne pelaajat, jotka rekisteröityessään valitsevat olla ehdolla kyseisessä kategoriassa. Pelaajat näkevät äänestyksen tuloksesta kolme eniten ääniä saaneet. Pelaajat näkevät myös oman äänestyshistoriansa. Ylläpitäjä näkee kaikki äänestysmäärät.
+Äänestyssovellus pesäpallojoukkueen pesäpallogaalaa varten. Pelaajat rekisteröityvät palveluun. Sen jälkeen he kirjautuvat palveluun ja pääsevät luomaan omia äänestyksiään. Pelaajat voivat äänestää muiden luomissa äänestyksissä. Jokainen voi äänestää yhdessä äänestyksessä vain kerran. Äänestyksessä ovat ehdokkaina kaikki pelaajat, jotka ovat äänestyksen luomishetkellä rekisteröityneet palveluun. Äänestyksen ylläpitäjä pääsee lisäämään tai poistamaan ehdokkaita sekä muokkaamaan äänestyksen tietoja. Ylläpitäjä myös merkitsee äänestyksen ohi olevaksi, jonka jälkeen kaikki kirjautuneet pelaajat pääsevät katsomaan äänestyksen tuloksia.
 
 ## Kirjautuminen ja käyttöohje
-
-Tunnuksena toimii: Matti Mainio  
-Salasanana: qwer  
+Kaikki pystyvät rekisteröitymään käyttäjäksi.
+Jos haluaa päästä katsomaan toisen pelaajan tekemiä äänestyksiä,
+tunnuksena toimii: Matti Mainio  
+ja salasanana: qwer  
   
-  Etusivulta pääsee kirjautumaan sovellukseen. Kirjautumisen jälkeen käyttäjä pääsee selaamaan äänestyslistaa, katselemaan äänestysten tietoja sekä muokkaamaan omia tietojaan. Vielä tulossa: ehdokaslistaan pääsee äänestyksen tiedoista. Äänestäminen tapahtuu ehdokaslistalta.
+  Etusivulta pääsee rekisteröitymään sekä kirjautumaan sovellukseen. Kirjautumisen jälkeen käyttäjä pääsee selaamaan äänestyslistaa, katselemaan äänestysten tietoja, äänestämään auki olevissa äänestyksissä sekä muokkaamaan omia tietojaan. Äänestyksen ollessa ohi, pelaaja pääsee katselemaan äänestyksen tuloksia.
+  Ylläpitäjä pääsee muokkaamaan äänestyksen tietoja, asettamaan äänestyksen ohi olevaksi sekä poistamaan ja lisäämään ehdokkaita äänestykseen. Ylläpitäjä voi myös poistaa äänestyksen.
