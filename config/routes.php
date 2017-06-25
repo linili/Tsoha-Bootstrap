@@ -107,8 +107,8 @@ $routes->get('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
 $routes->post('/aanestys/:aanestys_id/ehdokas/uusi', function($aanestys_id) {
     EhdokasController::store($aanestys_id);
 });
-$routes->get('/aanestys/:aanestys_id/ehdokas/:ehdokas_id/destroy', function($ehdokas_id, $aanestys_id) {
-    EhdokasController::destroy($ehdokas_id, $aanestys_id);
+$routes->get('/aanestys/:aanestys_id/ehdokas/:ehdokas_id/destroy', function($aanestys_id, $ehdokas_id) {
+    EhdokasController::destroy($aanestys_id, $ehdokas_id);
 });
 
 // Aani reitit

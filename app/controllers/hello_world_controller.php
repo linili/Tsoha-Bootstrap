@@ -16,11 +16,12 @@ require 'app/models/aanestys.php';
       // Testaa koodiasi täällä
         // Muista sisällyttää malliluokka require-komennolla!
 
-    $ehdokkaat = Ehdokas::kaikki(1);
-    $ehdokas = Ehdokas::etsi(1);
+    $ehdokaat = Ehdokas::kaikki(1)
+    
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
-    Kint::dump($ehdokas);
-    Kint::dump($ehdokkaat);
+
+    Kint::dump($ehdokaat);
+    
   
 
       //  View::make('helloworld.html');

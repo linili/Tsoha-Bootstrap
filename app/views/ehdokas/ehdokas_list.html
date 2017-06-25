@@ -18,7 +18,6 @@
             <th>Ehdokas</th>
             <th>Aloitusvuosi</th>
             <th></th>
-            <th></th>
         </tr>
     </thead>
 
@@ -26,14 +25,14 @@
 
         <!-- Listataan ehdokkaat tähän -->
         {% for ehdokas in ehdokkaat %}
-          {% for pelaaja in pelaajat %}
-            {% if pelaaja.id == ehdokas.pelaaja_id %}
+          {% for pelaaja in pelaajat %} 
+            {% if pelaaja.id == ehdokas.pelaaja_id %} 
         <tr>
             <td>{{pelaaja.nimi}}</td>
             <td>{{pelaaja.aloitusvuosi}}</td>
 
             {% endif %}
-          {% endfor %}
+          {% endfor %} 
 
             {% if user_logged_in.id == aanestys.yllapitaja %}
             <td><a href="{{base_path}}/aanestys/{{aanestys.id}}/ehdokas/{{ehdokas.id}}/destroy" class="btn btn-danger">Poista</a></td>

@@ -50,11 +50,11 @@ class EhdokasController extends BaseController {
         }
     }
 
-    public static function destroy($ehdokas_id, $aanestys_id) {
+    public static function destroy($aanestys_id, $ehdokas_id) {
         self::check_logged_in();
         $ehdokas = Ehdokas::etsi($ehdokas_id);
         $ehdokas->destroy();
-        Redirect::to('aanestys/' . $aanestys_id . '/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));
+        Redirect::to('/aanestys/' . $aanestys_id . '/ehdokas_list', array('message' => 'Ehdokas on poistettu!'));
     }
 
 }

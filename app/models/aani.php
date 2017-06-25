@@ -13,7 +13,7 @@ class Aani extends BaseModel {
         $query = DB::connection()->prepare('SELECT * FROM Aani WHERE ehdokas_id = :ehdokas_id AND aanestys_id = :aanestys_id');
         $query->execute(array('ehdokas_id' => $ehdokas_id, 'aanestys_id' => $aanestys_id));
         $rows = $query->fetchAll();
-        $aanet = array();
+       /* $aanet = array();
         foreach ($rows as $row) {
             $aanet[] = new Aani(array(
                 'aanestaja_id' => $row['aanestaja_id'],
@@ -22,7 +22,7 @@ class Aani extends BaseModel {
             ));
         }
         $aanten_maara = count($aanet);
-        return $aanten_maara;
+      */  return count($rows);
     }
 
     public static function kaikki($aanestys_id) {

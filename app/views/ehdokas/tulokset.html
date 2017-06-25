@@ -20,20 +20,20 @@
     <tbody>
     
       <!-- Listataan ehdokkaat tähän -->
-      {% for ehdokas in ehdokkaat %}
-        {% for pelaaja in pelaajat %}
-          {% if pelaaja.id == ehdokas.pelaaja_id %}
+      {% for aani in aanet %}
+        {% for ehdokas in ehdokkaat %}
+          {% for pelaaja in pelaajat %}
+            {% if pelaaja.id == ehdokas.pelaaja_id %}
           <tr>
           <td>{{pelaaja.nimi}}</td>
           <td>{{pelaaja.aloitusvuosi}}</td>
           
-          {% for aani in aanet %}
+            {% endif %}
+          {% endfor %}
           <td>{{aani}}</td>
        
-          {% endfor %}
-          {% endif %}
+          
           </tr>
-        {% endfor %}
       {% endfor %}
     </tbody>
   </table>

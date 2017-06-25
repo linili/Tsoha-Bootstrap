@@ -22,7 +22,6 @@ class AanestysController extends BaseController {
                  // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
             Redirect::to('/', array('message' => 'Nyt voit kirjautua!'));
             }
-Kint::dump($errors);
         } else {
             Redirect::to('/rekisteroityminen', array('message' => 'Salasanat eivät täsmänneet!'));
         }
