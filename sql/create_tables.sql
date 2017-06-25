@@ -1,14 +1,14 @@
 
 CREATE TABLE Pelaaja(
 id SERIAL PRIMARY KEY,
-nimi varchar(30) NOT NULL,
+nimi varchar(30) NOT NULL UNIQUE,
 aloitusvuosi INTEGER,
 salasana varchar(10) NOT NULL
 );
 
 CREATE TABLE Aanestys(
 id SERIAL PRIMARY KEY,
-nimi varchar(30) NOT NULL,
+nimi varchar(30) NOT NULL UNIQUE,
 status boolean DEFAULT TRUE,
 yllapitaja INTEGER REFERENCES Pelaaja(id),
 kuvaus varchar(400) NOT NULL,

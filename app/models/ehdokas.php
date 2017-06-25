@@ -2,7 +2,7 @@
 
 class Ehdokas extends BaseModel {
 
-    public $id, $pelaaja_id, $aanestys_id;
+    public $id, $pelaaja_id, $aanestys_id, $aanet;
 
     public function __construct($attributes) {
         parent::__construct($attributes);

@@ -49,15 +49,14 @@ class Pelaaja extends BaseModel {
         $query->execute(array('nimi' => $this->nimi, 'aloitusvuosi' => $this->aloitusvuosi, 'salasana' => $this->salasana));
         // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
         $row = $query->fetch();
-         Kint::trace();
-         Kint::dump($row);
+        
         // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
         $this->id = $row['id'];
     }
 
     public function destroy() {
         $query = DB::connection()->prepare('DELETE * FROM Pelaaja WHERE id = :id');
-        $query->execute;
+        $query->execute(array('id' => $this->id));
     }
 
     public function update() {

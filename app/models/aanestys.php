@@ -84,6 +84,10 @@ class Aanestys extends BaseModel {
         if (strlen($this->nimi) > 30) {
             $errors[] = 'Nimen pituuden tulee olla enintään 30 merkkiä!';
         }
+        if (Aanestys::etsi($this->id) == null & $this->onko_nimi_jo_kaytossa()) {
+            $errors[] = 'Nimi on jo käytössä';
+
+        }
         return $errors;
     }
     
@@ -93,6 +97,16 @@ class Aanestys extends BaseModel {
             $errors[] = 'Kuvaus tulee olla enintään 400 merkkiä!';
         }
         return $errors;
+    }
+
+    public function onko_nimi_jo_kaytossa() {
+        $query = DB::connection()->prepare('SELECT * FROM Aanestys WHERE nimi = :nimi LIMIT 1');
+        $query->execute(array('nimi' => $this->nimi));
+        $row = $query->fetch();
+        if ($row) {
+            $errors[] = 'Nimi on jo käytössä!';
+        }
+        return $row;
     }
 
 }
