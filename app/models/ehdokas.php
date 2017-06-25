@@ -24,7 +24,7 @@ class Ehdokas extends BaseModel {
         return $ehdokkaat;
     }
 // ei vielä toimi
-    public static function kaikki_aanilla($aanestys_id) {
+ /*   public static function kaikki_aanilla($aanestys_id) {
         $query = DB::connection()->prepare('SELECT Ehdokas.id, Ehdokas.pelaaja_id, Ehdokas.aanestys_id, Pelaaja.nimi, Pelaaja.aloitusvuosi  FROM Ehdokas INNER JOIN Pelaaja ON Ehdokas.pelaaja_id = Pelaaja.id WHERE aanestys_id = :aanestys_id');
         $query->execute(array('aanestys_id' => $aanestys_id));
         $rows = $query->fetchAll();
@@ -41,8 +41,7 @@ class Ehdokas extends BaseModel {
         
         return $ehdokkaat;
     }
-
-
+*/
     public static function etsi($id) {
         $query = DB::connection()->prepare('SELECT * FROM Ehdokas WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
