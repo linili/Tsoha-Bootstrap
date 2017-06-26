@@ -27,7 +27,7 @@ class AaniController extends BaseController {
 
     public static function tulokset($aanestys_id) {
         $aanestys = Aanestys::etsi($aanestys_id);
-        $ehdokkaat = Ehdokas::kaikki($aanestys_id);
+        $ehdokkaat = Ehdokas::kaikki_aanilla($aanestys_id);
 
         $pelaajat = Pelaaja::kaikki();
         $aanet = Aani::kaikki($aanestys_id);
@@ -35,7 +35,7 @@ class AaniController extends BaseController {
         foreach ($ehdokkaat as $ehdokas) {
             $aanten_maara[] = Aani::ehdokkaan_aanet($ehdokas->id, $aanestys_id);
         }
-        View::make('ehdokas/tulokset.html', array('aanestys' => $aanestys, 'ehdokkaat' => $ehdokkaat, 'aanten_maara' => $aanten_maara));
+        View::make('ehdokas/tulokset.html', array('aanestys' => $aanestys, 'ehdokkaat' => $ehdokkaat, 'pelaajat' => $pelaajat, 'aanten_maara' => $aanten_maara));
     }
 
     /*  public static function

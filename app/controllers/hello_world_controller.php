@@ -11,19 +11,17 @@ require 'app/models/aanestys.php';
     public static function sandbox(){
         
        
-     //   $errors = $tommi->errors();
-     //   Kint::dump($errors);
+    
       // Testaa koodiasi täällä
         // Muista sisällyttää malliluokka require-komennolla!
 
-    $ehdokaat = Ehdokas::kaikki(1)
+ //   $ehdokkaat = Ehdokas::kaikki(1);
+ //   Kint::dump($ehdokkaat);
+        $ehdokas = new Ehdokas(array('pelaaja_id' => 1, 'aanestys_id' => 2, 'aanet' => 3));
+        $aanet = Aani::ehdokkaan_aanet(1, 2);
+        Kint::dump($aanet);
     
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
-
-    Kint::dump($ehdokaat);
-    
-  
-
       //  View::make('helloworld.html');
       // echo 'Hello World!!!';
     }
