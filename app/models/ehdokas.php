@@ -24,10 +24,8 @@ class Ehdokas extends BaseModel {
         return $ehdokkaat;
     }
 
-// ei vielä toimi
-
- /*   public static function kaikki_nimilla($aanestys_id) {
-        $query = DB::connection()->prepare('SELECT Ehdokas.id, Ehdokas.pelaaja_id, Ehdokas.aanestys_id, Pelaaja.nimi, Pelaaja.aloitusvuosi  FROM Ehdokas LEFT JOIN Pelaaja ON Ehdokas.pelaaja_id = Pelaaja.id WHERE aanestys_id = :aanestys_id');
+    public static function kaikki_nimilla_ja_aanilla($aanestys_id) {
+        $query = DB::connection()->prepare('SELECT Ehdokas.id, Ehdokas.pelaaja_id, Ehdokas.aanestys_id, Pelaaja.nimi, Pelaaja.aloitusvuosi  FROM Ehdokas LEFT JOIN Pelaaja ON Ehdokas.pelaaja_id = Pelaaja.id WHERE Ehdokas.aanestys_id = :aanestys_id');
         $query->execute(array('aanestys_id' => $aanestys_id));
         $rows = $query->fetchAll();
         $ehdokkaat = array();
@@ -35,17 +33,15 @@ class Ehdokas extends BaseModel {
             $ehdokkaat[] = new Ehdokas(array(
                 'id' => $row['id'],
                 'pelaaja_id' => $row['pelaaja_id'],
-                'aanestys_id' => $row['aanestys_id']
-                'pelaaja_nimi' => $row['nimi']
+                'aanestys_id' => $row['aanestys_id'],
+                'pelaaja_nimi' => $row['nimi'],
+                'aanet' => Aani::ehdokkaan_aanet($row['id'], $row['aanestys_id'])
             ));
         }
         
         return $ehdokkaat;
     }
-*/
 
-// ei vielä toimi
-    
     public static function kaikki_aanilla($aanestys_id) {
         $query = DB::connection()->prepare('SELECT *  FROM Ehdokas WHERE aanestys_id = :aanestys_id');
         $query->execute(array('aanestys_id' => $aanestys_id));
@@ -86,8 +82,6 @@ class Ehdokas extends BaseModel {
         $query->execute(array('pelaaja_id' => $this->pelaaja_id, 'aanestys_id' => $this->aanestys_id));
         // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
         $row = $query->fetch();
-        // Kint::trace();
-        // Kint::dump($row);
         // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
         $this->id = $row['id'];
     }

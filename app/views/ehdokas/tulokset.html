@@ -11,7 +11,6 @@
     <thead>
         <tr>
             <th>Ehdokas</th>
-            <th>Aloitusvuosi</th>
             <th>Ääniä</th>
             <th></th>
         </tr>
@@ -19,19 +18,11 @@
 
     <tbody>
 
-        <!-- Listataan ehdokkaat tähän -->
+        <!-- Listataan ehdokkaat ja heidän äänensä tähän -->
 
         {% for ehdokas in ehdokkaat %}
 
-        {% for pelaaja in pelaajat %}
-        {% if pelaaja.id == ehdokas.pelaaja_id %}
-        <tr>
-            <td>{{pelaaja.nimi}}</td>
-            <td>{{pelaaja.aloitusvuosi}}</td>
-
-            {% endif %}
-            {% endfor %}
-
+             <td>{{ehdokas.pelaaja_nimi}}</td>
             <td>{{ehdokas.aanet}}</td>
         </tr>
         {% endfor %}
