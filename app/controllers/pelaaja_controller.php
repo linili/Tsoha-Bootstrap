@@ -25,17 +25,15 @@ class PelaajaController extends BaseController {
             'salasana' => $params['salasana']
         ));
 
-        // Kint::dump($params);
         // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
 
         $errors = $pelaaja->errors();
         if (count($errors) == 0) {
             $pelaaja->save();
 
-            // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
-            //  Redirect::to('/pelaaja/' . $pelaaja->id, array('message' => 'Pelaaja on lisätty!'));
-            // }else{
-            //    View::make('pelaaja/', array('errors' => $errors, 'attributes' => $attributes));
+
+             }else{
+                 Redirect::to('/rekisteroityminen', array('message' => $errors, 'nimi' => $params['nimi'], 'aloitusvuosi' => $params['aloitusvuosi']));
         }
     }
 
@@ -56,13 +54,13 @@ class PelaajaController extends BaseController {
             'salasana' => $params['salasana']
         );
         $pelaaja = new Pelaaja($attributes);
-       
+
         $errors = $pelaaja->errors();
         if (count($errors) > 0) {
             View::make('pelaaja/:id/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         } else {
             $pelaaja->update();
-            Redirect::to('pelaaja/'. $pelaaja->id, array('message' => 'Pelaajan tietoja on muokattu!'));
+            Redirect::to('pelaaja/' . $pelaaja->id, array('message' => 'Pelaajan tietoja on muokattu!'));
         }
     }
 

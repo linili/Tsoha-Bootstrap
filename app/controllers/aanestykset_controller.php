@@ -19,11 +19,13 @@ class AanestysController extends BaseController {
             $errors = $pelaaja->errors();
             if (count($errors) == 0) {
                 $pelaaja->save();
-                 // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
-            Redirect::to('/', array('message' => 'Nyt voit kirjautua!'));
+                // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
+                Redirect::to('/', array('message' => 'Nyt voit kirjautua!'));
+            } else {
+                 View::make('rekisteroityminen.html', array('errors' => $errors));
             }
         } else {
-            Redirect::to('/rekisteroityminen', array('message' => 'Salasanat eivät täsmänneet!'));
+            Redirect::to('/rekisteroityminen', array('message' => 'Salasanat eivät täsmänneet!', 'nimi' => $params['nimi'], 'aloitusvuosi' => $params['aloitusvuosi']));
         }
     }
 
@@ -35,7 +37,7 @@ class AanestysController extends BaseController {
         $params = $_POST;
         $pelaaja = Pelaaja::tunnista($params['nimi'], $params['salasana']);
         if (!$pelaaja) {
-            View::make('login.html', array('error' => 'Väärä nimi tai salasana!', 'nimi' => $params['nimi']));
+            View::make('login.html', array('message' => 'Väärä nimi tai salasana!', 'nimi' => $params['nimi']));
         } else {
             $_SESSION['pelaaja'] = $pelaaja->id;
             Redirect::to('/home', array('message' => 'Tervetuloa takaisin ' . $pelaaja->nimi . '!'));
