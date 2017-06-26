@@ -10,7 +10,7 @@ class Ehdokas extends BaseModel {
     }
 
     public static function kaikki($aanestys_id) {
-        $query = DB::connection()->prepare('SELECT ehdokas.id, ehdokas.pelaaja_id, ehdokas.aanestys_id FROM Ehdokas WHERE aanestys_id = :aanestys_id');
+        $query = DB::connection()->prepare('SELECT * FROM Ehdokas WHERE aanestys_id = :aanestys_id');
         $query->execute(array('aanestys_id' => $aanestys_id));
         $rows = $query->fetchAll();
         $ehdokkaat = array();
@@ -23,7 +23,29 @@ class Ehdokas extends BaseModel {
         }
         return $ehdokkaat;
     }
+
 // ei vielä toimi
+
+ /*   public static function kaikki_nimilla($aanestys_id) {
+        $query = DB::connection()->prepare('SELECT Ehdokas.id, Ehdokas.pelaaja_id, Ehdokas.aanestys_id, Pelaaja.nimi, Pelaaja.aloitusvuosi  FROM Ehdokas LEFT JOIN Pelaaja ON Ehdokas.pelaaja_id = Pelaaja.id WHERE aanestys_id = :aanestys_id');
+        $query->execute(array('aanestys_id' => $aanestys_id));
+        $rows = $query->fetchAll();
+        $ehdokkaat = array();
+        foreach ($rows as $row) {
+            $ehdokkaat[] = new Ehdokas(array(
+                'id' => $row['id'],
+                'pelaaja_id' => $row['pelaaja_id'],
+                'aanestys_id' => $row['aanestys_id']
+                'pelaaja_nimi' => $row['nimi']
+            ));
+        }
+        
+        return $ehdokkaat;
+    }
+*/
+
+// ei vielä toimi
+    
  /*   public static function kaikki_aanilla($aanestys_id) {
         $query = DB::connection()->prepare('SELECT Ehdokas.id, Ehdokas.pelaaja_id, Ehdokas.aanestys_id, Pelaaja.nimi, Pelaaja.aloitusvuosi  FROM Ehdokas INNER JOIN Pelaaja ON Ehdokas.pelaaja_id = Pelaaja.id WHERE aanestys_id = :aanestys_id');
         $query->execute(array('aanestys_id' => $aanestys_id));
