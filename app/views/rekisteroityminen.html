@@ -14,31 +14,31 @@
     {{message}}
 </div>
 {% endif %}
-  <h1>Rekisteröidy</h1>
+<h1>Rekisteröidy</h1>
 
-  <!-- Kaikki lomakkeen elementit form-tagin sisään -->
-  <form method="post" action="{{base_path}}/rekisteroityminen">
+<!-- Kaikki lomakkeen elementit form-tagin sisään -->
+<form method="post" action="{{base_path}}/rekisteroityminen">
     <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
-      <label>Nimi</label>
-      <input type="text" class="form-control" name="nimi" value="{{nimi}}">
+        <label>Nimi</label>
+        <input type="text" class="form-control" name="nimi" value="{{nimi}}">
     </div>
     <div class="form-group">
-      <label>Aloitusvuosi</label>
-      <input type="text" class="form-control" name="aloitusvuosi">
+        <label>Aloitusvuosi</label>
+        <input type="text" class="form-control" name="aloitusvuosi">
     </div>
 
     <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
-      <label>Salasana</label>
-      <input type="password" class="form-control" name="salasana">
+        <label>Salasana</label>
+        <input type="password" class="form-control" name="salasana">
     </div>
 
     <div class="form-group">
-      <label>Syötä salasana uudestaan</label>
-      <input type="password" class="form-control" name="salasana2">
+        <label>Syötä salasana uudestaan</label>
+        <input type="password" class="form-control" name="salasana2">
     </div>
 
     <button type="submit" class="btn btn-primary">Rekisteröidy</button>
-  </form>
+</form>
 {% endblock %}
